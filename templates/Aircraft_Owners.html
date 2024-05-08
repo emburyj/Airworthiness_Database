@@ -7,14 +7,24 @@
 <table>
     <tbody>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>Owner Name</th>
+            <th>Email Address</th>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Josh Embury</td>
+            <td>emburyj@oregonstate.edu</td>
+        </tr>
+        <tr>
+            <td>Ian Bubier</td>
+            <td>bubieri@oregonstate.edu</td>
+        </tr>
+        <tr>
+            <td>United Airlines</td>
+            <td>therealunited@aol.com</td>
+        </tr>
+        <tr>
+            <td>Alaska Airlines</td>
+            <td>alaskaair@hotmail.com</td>
         </tr>
     </tbody>
 </table>
@@ -25,10 +35,12 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>Owner Name</label>
+        <input type="text" name="OwnerName">
+        <label>Owner Email Address</label>
+        <input type="text" name="OwnerEmail">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Add">
+    <input class="btn" type="submit" id="NewOwner" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -37,10 +49,12 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>Owner Name</label>
+        <input type="text" name="OwnerName">
+        <label>Owner Email Address</label>
+        <input type="text" name="OwnerEmail">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Update">
+    <input class="btn" type="submit" id="UdateOwner" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -49,10 +63,11 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>Owner Name</label>
+        <input type="text" name="OwnerName">
+
     </fieldset>
-    <input class="btn" type="submit" id="" value="Delete">
+    <input class="btn" type="submit" id="DeleteOwner" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
