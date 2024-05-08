@@ -1,0 +1,43 @@
+/*Header*/
+  header {
+    background-color: gray;
+    border-top:3px solid black;
+    border-bottom:3px solid black;
+    text-align: center;
+  }
+/*Nav Bar*/
+
+  nav {
+    text-align: center;
+    margin: 1% 5%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav a {
+    text-align: center;
+    font-family: black;
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    border:2px solid black;
+    margin: 1% 1%;
+    padding: 13px;
+    width: 130px;
+  }
+  /*  ----- Table ----- */
+
+  table, th, td {
+    justify-content: center;
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid;
+    border-color: black;
+  }
+
+  /*Sections*/
+  section {
+    padding: 15px;
+  }
