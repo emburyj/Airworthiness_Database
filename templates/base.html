@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>{{ page_name }}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <header>
+        <h1>
+            Airworthiness Database
+        </h1>
+        <nav>
+            <a href="{{ url_for('about')}}">About</a>
+            <a href="{{ url_for('Airworthiness_Directives')}}">Airworthiness Directives</a>
+            <a href="{{ url_for('Registered_Aircraft')}}">Registered Aircraft</a>
+            <a href="{{ url_for('Aircraft_Models')}}">Aircraft Models</a>
+            <a href="{{ url_for('Aircraft_Owners')}}">Aircraft Owners</a>
+            <a href="{{ url_for('Maintenance_Records')}}">Maintenance Records</a>
+        </nav>
+    </header>
+    <main>
+    <!-- Information Section -->
+        <section>
+            {% block information %} {% endblock %}
+        </section>
+    <!-- Read Section -->
+        <section>
+            {% block read %}
+            <!-- Read table here -->
+            {% endblock %}
+        </section>
+
+        <!-- Create Section -->
+        <section>
+            {% block create %}
+            <!-- Create table here -->
+            {% endblock %}
+        </section>
+
+        <!-- Update Section -->
+        <section>
+            {% block update %}
+            <!-- Update table here -->
+            {% endblock %}
+        </section>
+
+        <!-- Delete Section -->
+        <section>
+            {% block delete %}
+            <!-- Delete table here -->
+            {% endblock %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 SQL Squadron</p>
+    </footer>
+</body>
+</html>
