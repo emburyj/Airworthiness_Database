@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block information %}
+    <h2>{{page_name}}</h2>
+{% endblock %}
+
+{% block read %}
+<table>
+    <tbody>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}
+
+{% block create %}
+<form method="POST">
+    <legend><strong>Add {{ page_name }}</strong></legend>
+    <fieldset>
+        <label></label>
+        <input type="" name="">
+    </fieldset>
+    <input class="btn" type="submit" id="" value="Add">
+    <input class="btn" type="button" value="Cancel">
+</form>
+{% endblock %}
+
+{% block update %}
+<form method="POST">
+    <legend><strong>Update {{ page_name }}</strong></legend>
+    <fieldset>
+        <label></label>
+        <input type="" name="">
+    </fieldset>
+    <input class="btn" type="submit" id="" value="Update">
+    <input class="btn" type="button" value="Cancel">
+</form>
+{% endblock %}
+
+{% block delete %}
+<form method="POST">
+    <legend><strong>Delete {{ page_name }}</strong></legend>
+    <fieldset>
+        <label></label>
+        <input type="" name="">
+    </fieldset>
+    <input class="btn" type="submit" id="" value="Delete">
+    <input class="btn" type="button" value="Cancel">
+</form>
+{% endblock %}
