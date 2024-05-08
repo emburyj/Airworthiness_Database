@@ -7,14 +7,24 @@
 <table>
     <tbody>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>Manufacturer Name</th>
+            <th>Model Name</th>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>The Boeing Company</td>
+            <td>737-8</td>
+        </tr>
+        <tr>
+            <td>The Boeing Company</td>
+            <td>737-9</td>
+        </tr>
+        <tr>
+            <td>Airbus SAS</td>
+            <td>A320-214</td>
+        </tr>
+            <tr>
+            <td>Epic Aircraft</td>
+            <td>E1000</td>
         </tr>
     </tbody>
 </table>
@@ -25,10 +35,12 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>Manufacturer Name</label>
+        <input type="text" name="AircraftManufacturer">
+        <label>Model Name</label>
+        <input type="text" name="AircraftModel">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Add">
+    <input class="btn" type="submit" id="NewAircraftModel" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -37,10 +49,12 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>Manufacturer Name</label>
+        <input type="text" name="AircraftManufacturer">
+        <label>Model Name</label>
+        <input type="text" name="AircraftModel">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Update">
+    <input class="btn" type="submit" id="UpdateAircraftModel" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -49,10 +63,10 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>Model Name</label>
+        <input type="text" name="AircraftModel">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Delete">
+    <input class="btn" type="submit" id="DeleteAircraftModel" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
