@@ -1,5 +1,7 @@
+USE cs340_bubieri;
 
 -- Create Aircraft_Owners table and populate with example data
+DROP TABLE IF EXISTS Aircraft_Owners;
 CREATE TABLE Aircraft_Owners (
     owner_id int NOT NULL UNIQUE AUTO_INCREMENT,
     owner_name varchar(50) UNIQUE NOT NULL,
@@ -32,6 +34,7 @@ VALUES
 );
 
 -- Create Aircraft_Models table and populate with example data
+DROP TABLE IF EXISTS Aircraft_Models;
 CREATE TABLE Aircraft_Models (
     model_id int NOT NULL UNIQUE AUTO_INCREMENT,
     manufacturer_name varchar(50) NOT NULL,
@@ -64,15 +67,16 @@ VALUES
 );
 
 -- Create Registered_Aircraft table and populate with example data
+DROP TABLE IF EXISTS Registered_Aircraft;
 CREATE TABLE Registered_Aircraft (
     aircraft_id int NOT NULL UNIQUE AUTO_INCREMENT,
     n_number varchar(50) UNIQUE NOT NULL,
     owner_id int,
-    model_id int,
+    model_id int NOT NULL,
     status varchar(50) NOT NULL,
     PRIMARY KEY (aircraft_id),
-    FOREIGN KEY (owner_id) REFERENCES Aircraft_Owners (owner_id),
-    FOREIGN KEY (model_id) REFERENCES Aircraft_Models (model_id)
+    FOREIGN KEY (owner_id) REFERENCES Aircraft_Owners (owner_id) ON DELETE SET NULL,
+    FOREIGN KEY (model_id) REFERENCES Aircraft_Models (model_id) ON DELETE RESTRICT
 );
 
 INSERT INTO Registered_Aircraft (
@@ -104,10 +108,11 @@ VALUES
 );
 
 -- Create Airworthiness_Directives table and populate with example data
+DROP TABLE IF EXISTS Airworthiness_Directives;
 CREATE TABLE Airworthiness_Directives (
     ad_id int NOT NULL UNIQUE AUTO_INCREMENT,
     ad_number varchar(50) UNIQUE NOT NULL,
-    ad_description varchar(511),
+    ad_description varchar(511) NOT NULL,
     maintenance_required_date date NOT NULL,
     PRIMARY KEY (ad_id)
 );
@@ -145,49 +150,58 @@ VALUES
 );
 
 -- Create Maintenance_Records table and populate with example data
+DROP TABLE IF EXISTS Maintenance_Records;
 CREATE Table Maintenance_Records (
     maintenance_id int NOT NULL UNIQUE AUTO_INCREMENT,
-    aircraft_id int,
+    aircraft_id int NOT NULL,
     maintenance_date date NOT NULL,
+    maintenance_description varchar(511) NOT NULL,
     PRIMARY KEY (maintenance_id),
-    FOREIGN KEY (aircraft_id) REFERENCES Registered_Aircraft(aircraft_id)
+    FOREIGN KEY (aircraft_id) REFERENCES Registered_Aircraft(aircraft_id) ON DELETE CASCADE
 );
 
 INSERT INTO Maintenance_Records (
     aircraft_id,
-    maintenance_date
+    maintenance_date,
+    maintenance_description
 )
 
 VALUES
 (
     (SELECT aircraft_id FROM Registered_Aircraft WHERE n_number = "N921AK"),
-    "2018-10-30"
+    "2018-10-30",
+    "Fixed a thing."
 ),
 (
     (SELECT aircraft_id FROM Registered_Aircraft WHERE n_number = "N921AK"),
-    "2019-01-15"
+    "2019-01-15",
+    "Repaired a doodad."
 ),
 (
     (SELECT aircraft_id FROM Registered_Aircraft WHERE n_number = "N921AK"),
-    "2021-06-18"
+    "2021-06-18",
+    "Mended a thingamajig."
 ),
 (
     (SELECT aircraft_id FROM Registered_Aircraft WHERE n_number = "N200MR"),
-    "2023-07-29"
+    "2023-07-29",
+    "Reconfigured a whotsit."
 ),
 (
     (SELECT aircraft_id FROM Registered_Aircraft WHERE n_number = "N291BT"),
-    "2024-01-05"
+    "2024-01-05",
+    "Jury-rigged a whatchamacallit."
 );
 
 -- Create Models_Directives table and populate with example data
+DROP TABLE IF EXISTS Models_Directives;
 CREATE TABLE Models_Directives (
     md_id int NOT NULL UNIQUE AUTO_INCREMENT,
-    model_id int,
-    ad_id int,
+    model_id int NOT NULL,
+    ad_id int NOT NULL,
     PRIMARY KEY (md_id),
-    FOREIGN KEY (model_id) REFERENCES Aircraft_Models(model_id),
-    FOREIGN KEY (ad_id) REFERENCES Airworthiness_Directives(ad_id)
+    FOREIGN KEY (model_id) REFERENCES Aircraft_Models(model_id) ON DELETE CASCADE,
+    FOREIGN KEY (ad_id) REFERENCES Airworthiness_Directives(ad_id) ON DELETE CASCADE
 );
 
 INSERT INTO Models_Directives (
