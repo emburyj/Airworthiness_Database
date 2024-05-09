@@ -101,8 +101,22 @@ def Maintenance_Records():
 
     return render_template("Maintenance_Records.html", entities=entities, data=data, page_name="Maintenance Records")
 
+@app.route('/Models_Directives')
+def Models_Directives():
+    entities = ["MD ID", "Model ID", "AD ID"]
+
+    data = [
+            {"MDID": 1, "MID": 2, "ADID": 2},
+            {"MDID": 2, "MID": 1, "ADID": 1},
+            {"MDID": 3, "MID": 2, "ADID": 1},
+            {"MDID": 4, "MID": 3, "ADID": 3}
+            ]
+
+    return render_template("Models_Directives.html", entities=entities, data=data, page_name="Maintenance Records")
+
+
 # Listener
 if __name__ == "__main__":
 
     #Start the app on port 3000, it will be different once hosted
-    app.run(port=3000, debug=True)
+    app.run(port=2468, debug=False)

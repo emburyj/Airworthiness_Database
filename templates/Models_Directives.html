@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block information %}
+    <h2>{{page_name}}</h2>
+{% endblock %}
+
+{% block read %}
+<table>
+    <tbody>
+        <tr>
+            {% for entity in entities %}
+                <th>{{ entity }}</th>
+            {% endfor %}
+        </tr>
+        {% for record in data %}
+        <tr>
+            <td>{{ record.MDID }}</td>
+            <td>{{ record.MID }}</td>
+            <td>{{ record.ADID }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
