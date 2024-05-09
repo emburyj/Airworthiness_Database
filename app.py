@@ -29,18 +29,40 @@ def Airworthiness_Directives():
 
 @app.route('/Registered_Aircraft')
 def Registered_Aircraft():
-
-    return render_template("Registered_Aircraft.html", page_name="Registered Aircraft")
+    entities = ["N Number", "Owner Name", "Model Name", "Current Status"]
+    data = {
+            "Owners": ["Josh Embury", "Ian Bubier", "United Airlines", "Alaska Airlines"],
+            "Models": ["737-8", "737-9", "A320-214", "E1000"],
+            "Aircraft": [
+                        {"Number": "N921AK", "Owner": "Josh Embury", "Model": "737-9", "Status": "Grounded for Maintenance"},
+                        {"Number": "N200MR", "Owner": "Ian Bubier", "Model": "E1000", "Status": "In-Service"},
+                        {"Number": "N291BT", "Owner": "Alaska Airlines", "Model": "737-9", "Status": "Pending Maintenance"},
+                        ]
+            }
+    return render_template("Registered_Aircraft.html",entities=entities, data=data, page_name="Registered Aircraft")
 
 @app.route('/Aircraft_Models')
 def Aircraft_Models():
-
-    return render_template("Aircraft_Models.html", page_name="Aircraft Models")
+    entities = ["Manufacturer Name", "Model Name"]
+    model_data = [
+                    {"Manufacturer": "The Boeing Company", "Model": "737-8"},
+                    {"Manufacturer": "The Boeing Company", "Model": "737-9"},
+                    {"Manufacturer": "Airbus SAS", "Model": "A320-214"},
+                    {"Manufacturer": "Epic Aircraft", "Model": "E1000"}
+                ]
+    return render_template("Aircraft_Models.html", entities=entities, data=model_data, page_name="Aircraft Models")
 
 @app.route('/Aircraft_Owners')
 def Aircraft_Owners():
+    entities = ["Owner Name", "Owner Email Address"]
+    owner_data = [
+                    {"Name": "Josh Embury", "Email": "emburyj@oregonstate.edu"},
+                    {"Name": "Ian Bubier", "Email": "bubieri@oregonstate.edu"},
+                    {"Name": "United Airlines", "Email": "therealunited@aol.com"},
+                    {"Name": "Alaska Airlines", "Email": "alaskaair@hotmail.com"}
+                ]
 
-    return render_template("Aircraft_Owners.html", page_name="Aircraft Owners")
+    return render_template("Aircraft_Owners.html", entities=entities, data=owner_data, page_name="Aircraft Owners")
 
 @app.route('/Maintenance_Records')
 def Maintenance_Records():

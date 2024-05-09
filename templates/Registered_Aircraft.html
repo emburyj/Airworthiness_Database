@@ -7,29 +7,18 @@
 <table>
     <tbody>
         <tr>
-            <th>N Number</th>
-            <th>Owner Name</th>
-            <th>Aircraft Model</th>
-            <th>Current Status</th>
+            {% for entity in entities %}
+                <th>{{ entity }}</th>
+            {% endfor %}
         </tr>
+        {% for aircraft in data.Aircraft %}
         <tr>
-            <td>N921AK</td>
-            <td>Josh Embury</td>
-            <td>737-9</td>
-            <td>Grounded for Maintenance</td>
+            <td>{{ aircraft.Number }}</td>
+            <td>{{ aircraft.Owner }}</td>
+            <td>{{ aircraft.Model }}</td>
+            <td>{{ aircraft.Status }}</td>
         </tr>
-        <tr>
-            <td>N200MR</td>
-            <td>Ian Bubier</td>
-            <td>E1000</td>
-            <td>In-Service</td>
-        </tr>
-        <tr>
-            <td>N291BT</td>
-            <td>Alaska Airlines</td>
-            <td>737-9</td>
-            <td>Pending Maintenance</td>
-        </tr>
+        {% endfor %}
 
     </tbody>
 </table>
@@ -44,17 +33,15 @@
         <input type="text" name="NNumber">
         <label>Aircraft Owner</label>
         <select name="AircraftOwner">
-            <option value="0">Josh Embury</option>
-            <option value="1">Ian Bubier</option>
-            <option value="2">United Airlines</option>
-            <option value="3">Alaska Airlines</option>
+            {% for item in data.Owners %}
+                <option value={{ loop.index - 1 }}> {{ item }}</option>
+            {% endfor %}
         </select>
         <label>Aircraft Model</label>
         <select name="AircraftModel">
-            <option value="0">737-8</option>
-            <option value="1">737-9</option>
-            <option value="2">A320-214</option>
-            <option value="3">E1000</option>
+            {% for item in data.Models %}
+                <option value={{ loop.index - 1 }}> {{ item }}</option>
+            {% endfor %}
         </select>
         <label>Current Status</label>
         <input type="text" name="CurrentStatus">
@@ -72,17 +59,15 @@
         <input type="text" name="NNumber">
         <label>Aircraft Owner</label>
         <select name="AircraftOwner">
-            <option value="0">Josh Embury</option>
-            <option value="1">Ian Bubier</option>
-            <option value="2">United Airlines</option>
-            <option value="3">Alaska Airlines</option>
+            {% for item in data.Owners %}
+                <option value={{ loop.index - 1 }}> {{ item }}</option>
+            {% endfor %}
         </select>
         <label>Aircraft Model</label>
         <select name="AircraftModel">
-            <option value="0">737-8</option>
-            <option value="1">737-9</option>
-            <option value="2">A320-214</option>
-            <option value="3">E1000</option>
+            {% for item in data.Models %}
+                <option value={{ loop.index - 1 }}> {{ item }}</option>
+            {% endfor %}
         </select>
         <label>Current Status</label>
         <input type="text" name="CurrentStatus">

@@ -7,25 +7,16 @@
 <table>
     <tbody>
         <tr>
-            <th>Owner Name</th>
-            <th>Email Address</th>
+            {% for entity in entities %}
+                <th>{{ entity }}</th>
+            {% endfor %}
         </tr>
+        {% for owner in data %}
         <tr>
-            <td>Josh Embury</td>
-            <td>emburyj@oregonstate.edu</td>
+            <td>{{ owner.Name }}</td>
+            <td>{{ owner.Email }}</td>
         </tr>
-        <tr>
-            <td>Ian Bubier</td>
-            <td>bubieri@oregonstate.edu</td>
-        </tr>
-        <tr>
-            <td>United Airlines</td>
-            <td>therealunited@aol.com</td>
-        </tr>
-        <tr>
-            <td>Alaska Airlines</td>
-            <td>alaskaair@hotmail.com</td>
-        </tr>
+        {% endfor %}
     </tbody>
 </table>
 

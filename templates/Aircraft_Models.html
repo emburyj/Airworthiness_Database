@@ -7,25 +7,16 @@
 <table>
     <tbody>
         <tr>
-            <th>Manufacturer Name</th>
-            <th>Model Name</th>
+            {% for entity in entities %}
+                <th>{{ entity }}</th>
+            {% endfor %}
         </tr>
+        {% for model in data %}
         <tr>
-            <td>The Boeing Company</td>
-            <td>737-8</td>
+            <td>{{ model.Manufacturer }}</td>
+            <td>{{ model.Model }}</td>
         </tr>
-        <tr>
-            <td>The Boeing Company</td>
-            <td>737-9</td>
-        </tr>
-        <tr>
-            <td>Airbus SAS</td>
-            <td>A320-214</td>
-        </tr>
-            <tr>
-            <td>Epic Aircraft</td>
-            <td>E1000</td>
-        </tr>
+        {% endfor %}
     </tbody>
 </table>
 
