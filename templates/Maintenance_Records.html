@@ -7,17 +7,21 @@
 <table>
     <tbody>
         <tr>
-            {% for entity in entities %}
-                <th>{{ entity }}</th>
-            {% endfor %}
+            <th>Maintenance ID</th>
+            <th>Aircraft ID</th>
+            <th>Maintenance Date</th>
+            <th>Maintenance Description</th>
         </tr>
-        {% for record in data %}
         <tr>
-            <td>{{ record.MID }}</td>
-            <td>{{ record.AID }}</td>
-            <td>{{ record.Date }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
-        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 
@@ -27,12 +31,10 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Aircraft N Number</label>
-        <input type="text" name="NNumber">
-        <label>Maintenance Date</label>
-        <input type="text" name="MaintenanceDate">
+        <label></label>
+        <input type="" name="">
     </fieldset>
-    <input class="btn" type="submit" id="NewMaintenance" value="Add">
+    <input class="btn" type="submit" id="" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -41,12 +43,10 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Aircraft N Number</label>
-        <input type="text" name="NNumber">
-        <label>Maintenance Date</label>
-        <input type="text" name="MaintenanceDate">
+        <label></label>
+        <input type="" name="">
     </fieldset>
-    <input class="btn" type="submit" id="UpdateMaintenance" value="Update">
+    <input class="btn" type="submit" id="" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -55,12 +55,10 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Aircraft N Number</label>
-        <input type="text" name="NNumber">
-        <label>Maintenance Date</label>
-        <input type="text" name="MaintenanceDate">
+        <label></label>
+        <input type="" name="">
     </fieldset>
-    <input class="btn" type="submit" id="DeleteMaintenance" value="Delete">
+    <input class="btn" type="submit" id="" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
