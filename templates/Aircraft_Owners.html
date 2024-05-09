@@ -7,17 +7,30 @@
 <table>
     <tbody>
         <tr>
-            {% for entity in entities %}
-                <th>{{ entity }}</th>
-            {% endfor %}
+            <th>Owner ID</th>
+            <th>Owner Name</th>
+            <th>Email Address</th>
         </tr>
-        {% for owner in data %}
         <tr>
-            <td>{{ owner.ID }}</td>
-            <td>{{ owner.Name }}</td>
-            <td>{{ owner.Email }}</td>
+            <td>1</td>
+            <td>Josh Embury</td>
+            <td>emburyj@oregonstate.edu</td>
         </tr>
-        {% endfor %}
+        <tr>
+            <td>2</td>
+            <td>Ian Bubier</td>
+            <td>bubieri@oregonstate.edu</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>United Airlines</td>
+            <td>therealunited@aol.com</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Alaska Airlines</td>
+            <td>alaskaair@hotmail.com</td>
+        </tr>
     </tbody>
 </table>
 
@@ -46,7 +59,7 @@
         <label>Owner Email Address</label>
         <input type="text" name="OwnerEmail">
     </fieldset>
-    <input class="btn" type="submit" id="UdateOwner" value="Update">
+    <input class="btn" type="submit" id="UpdateOwner" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -57,7 +70,8 @@
     <fieldset>
         <label>Owner Name</label>
         <input type="text" name="OwnerName">
-
+        <label>Owner Email Address</label>
+        <input type="text" name="OwnerEmail">
     </fieldset>
     <input class="btn" type="submit" id="DeleteOwner" value="Delete">
     <input class="btn" type="button" value="Cancel">
