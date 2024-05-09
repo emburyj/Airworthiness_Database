@@ -7,15 +7,30 @@
 <table>
     <tbody>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>N Number</th>
+            <th>Owner Name</th>
+            <th>Aircraft Model</th>
+            <th>Current Status</th>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>N921AK</td>
+            <td>Josh Embury</td>
+            <td>737-9</td>
+            <td>Grounded for Maintenance</td>
         </tr>
+        <tr>
+            <td>N200MR</td>
+            <td>Ian Bubier</td>
+            <td>E1000</td>
+            <td>In-Service</td>
+        </tr>
+        <tr>
+            <td>N291BT</td>
+            <td>Alaska Airlines</td>
+            <td>737-9</td>
+            <td>Pending Maintenance</td>
+        </tr>
+
     </tbody>
 </table>
 
@@ -25,10 +40,26 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>N Number</label>
+        <input type="text" name="NNumber">
+        <label>Aircraft Owner</label>
+        <select name="AircraftOwner">
+            <option value="0">Josh Embury</option>
+            <option value="1">Ian Bubier</option>
+            <option value="2">United Airlines</option>
+            <option value="3">Alaska Airlines</option>
+        </select>
+        <label>Aircraft Model</label>
+        <select name="AircraftModel">
+            <option value="0">737-8</option>
+            <option value="1">737-9</option>
+            <option value="2">A320-214</option>
+            <option value="3">E1000</option>
+        </select>
+        <label>Current Status</label>
+        <input type="text" name="CurrentStatus">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Add">
+    <input class="btn" type="submit" id="NewRegisteredAircraft" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -37,10 +68,26 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>N Number</label>
+        <input type="text" name="NNumber">
+        <label>Aircraft Owner</label>
+        <select name="AircraftOwner">
+            <option value="0">Josh Embury</option>
+            <option value="1">Ian Bubier</option>
+            <option value="2">United Airlines</option>
+            <option value="3">Alaska Airlines</option>
+        </select>
+        <label>Aircraft Model</label>
+        <select name="AircraftModel">
+            <option value="0">737-8</option>
+            <option value="1">737-9</option>
+            <option value="2">A320-214</option>
+            <option value="3">E1000</option>
+        </select>
+        <label>Current Status</label>
+        <input type="text" name="CurrentStatus">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Update">
+    <input class="btn" type="submit" id="UpdateRegisteredAircraft" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -49,10 +96,10 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>N Number</label>
+        <input type="text" name="NNumber">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Delete">
+    <input class="btn" type="submit" id="DeleteRegisteredAircraft" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
