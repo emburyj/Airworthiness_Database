@@ -7,30 +7,17 @@
 <table>
     <tbody>
         <tr>
-            <th>Owner ID</th>
-            <th>Owner Name</th>
-            <th>Email Address</th>
+            {% for entity in entities %}
+                <th>{{ entity }}</th>
+            {% endfor %}
         </tr>
+        {% for owner in data %}
         <tr>
-            <td>1</td>
-            <td>Josh Embury</td>
-            <td>emburyj@oregonstate.edu</td>
+            <td>{{ owner.ID }}</td>
+            <td>{{ owner.Name }}</td>
+            <td>{{ owner.Email }}</td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>Ian Bubier</td>
-            <td>bubieri@oregonstate.edu</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>United Airlines</td>
-            <td>therealunited@aol.com</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Alaska Airlines</td>
-            <td>alaskaair@hotmail.com</td>
-        </tr>
+        {% endfor %}
     </tbody>
 </table>
 
@@ -54,6 +41,8 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
+        <label>Owner ID</label>
+        <input type="text" name="OwnerID">
         <label>Owner Name</label>
         <input type="text" name="OwnerName">
         <label>Owner Email Address</label>
@@ -68,6 +57,8 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
+        <label>Owner ID</label>
+        <input type="text" name="OwnerID">
         <label>Owner Name</label>
         <input type="text" name="OwnerName">
         <label>Owner Email Address</label>

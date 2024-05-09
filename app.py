@@ -52,14 +52,14 @@ def Airworthiness_Directives():
 
 @app.route('/Registered_Aircraft')
 def Registered_Aircraft():
-    entities = ["Aircraft ID", "N Number", "Owner Name", "Model Name", "Current Status"]
+    entities = ["Aircraft ID", "N Number", "Owner ID","Owner Name", "Model ID","Model Name", "Current Status"]
     data = {
             "Owners": ["Josh Embury", "Ian Bubier", "United Airlines", "Alaska Airlines"],
             "Models": ["737-8", "737-9", "A320-214", "E1000"],
             "Aircraft": [
-                        {"ID": 1, "Number": "N921AK", "Owner": "Josh Embury", "Model": "737-9", "Status": "Grounded for Maintenance"},
-                        {"ID": 2, "Number": "N200MR", "Owner": "Ian Bubier", "Model": "E1000", "Status": "In-Service"},
-                        {"ID": 3, "Number": "N291BT", "Owner": "Alaska Airlines", "Model": "737-9", "Status": "Pending Maintenance"},
+                        {"ID": 1, "Number": "N921AK", "OID": 1,"Owner": "Josh Embury", "MID": 2, "Model": "737-9", "Status": "Grounded for Maintenance"},
+                        {"ID": 2, "Number": "N200MR", "OID": 2,"Owner": "Ian Bubier", "MID": 4, "Model": "E1000", "Status": "In-Service"},
+                        {"ID": 3, "Number": "N291BT", "OID": 4,"Owner": "Alaska Airlines", "MID": 2, "Model": "737-9", "Status": "Pending Maintenance"},
                         ]
             }
     return render_template("Registered_Aircraft.html",entities=entities, data=data, page_name="Registered Aircraft")
@@ -89,14 +89,14 @@ def Aircraft_Owners():
 
 @app.route('/Maintenance_Records')
 def Maintenance_Records():
-    entities = ["Maintenance ID", "Aircraft ID", "Maintenance Date"]
+    entities = ["Maintenance ID", "Aircraft ID", "Maintenance Date", "Maintenance Description"]
 
     data = [
-            {"MID": 1, "AID": 1, "Date": "2018-10-30"},
-            {"MID": 2, "AID": 1, "Date": "2019-01-15"},
-            {"MID": 3, "AID": 1, "Date": "2021-06-18"},
-            {"MID": 4, "AID": 2, "Date": "2023-07-29"},
-            {"MID": 5, "AID": 3, "Date": "2024-01-05"}
+            {"MID": 1, "AID": 1, "Date": "2018-10-30", "Description": "Fixed a thing."},
+            {"MID": 2, "AID": 1, "Date": "2019-01-15", "Description": "Repaired a doodad."},
+            {"MID": 3, "AID": 1, "Date": "2021-06-18", "Description": "Mended a thingamajig."},
+            {"MID": 4, "AID": 2, "Date": "2023-07-29", "Description": "Reconfigured a whotsit."},
+            {"MID": 5, "AID": 3, "Date": "2024-01-05", "Description": "Jury-rigged a whatchamacallit."}
             ]
 
     return render_template("Maintenance_Records.html", entities=entities, data=data, page_name="Maintenance Records")

@@ -15,7 +15,9 @@
         <tr>
             <td>{{ aircraft.ID }}</td>
             <td>{{ aircraft.Number }}</td>
+            <td>{{ aircraft.OID }}</td>
             <td>{{ aircraft.Owner }}</td>
+            <td>{{ aircraft.MID }}</td>
             <td>{{ aircraft.Model }}</td>
             <td>{{ aircraft.Status }}</td>
         </tr>
@@ -55,6 +57,8 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
+        <label>Aircraft ID</label>
+        <input type="text" name="AircraftID">
         <label>N Number</label>
         <input type="text" name="NNumber">
         <label>Aircraft Owner</label>
@@ -81,6 +85,8 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
+        <label>Aircraft ID</label>
+        <input type="text" name="AircraftID">
         <label>N Number</label>
         <input type="text" name="NNumber">
     </fieldset>
