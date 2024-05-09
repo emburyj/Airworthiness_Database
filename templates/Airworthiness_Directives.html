@@ -7,15 +7,18 @@
 <table>
     <tbody>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+            {% for entity in entities %}
+                <th>{{ entity }}</th>
+            {% endfor %}
         </tr>
+        {% for directive in data %}
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ directive.ID }}</td>
+            <td>{{ directive.Number }}</td>
+            <td>{{ directive.Description }}</td>
+            <td>{{ directive.Date }}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 
@@ -25,22 +28,32 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>AD Number</label>
+        <input type="text" name="DirectiveNumber">
+        <label>AD Description</label>
+        <textarea name="DirectiveDescription" rows="4" cols="50">
+        </textarea>
+        <label>AD Maintenance Required Date</label>
+        <input type="text" name="DirectiveDate">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Add">
+    <input class="btn" type="submit" id="NewAD" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
 
 {% block update %}
 <form method="POST">
-    <legend><strong>Update {{ page_name }}</strong></legend>
+    <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>AD Number</label>
+        <input type="text" name="DirectiveNumber">
+        <label>AD Description</label>
+        <textarea name="DirectiveDescription" rows="4" cols="50">
+        </textarea>
+        <label>AD Maintenance Required Date</label>
+        <input type="text" name="DirectiveDate">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Update">
+    <input class="btn" type="submit" id="UpdateAD" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -49,10 +62,10 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>AD Number</label>
+        <input type="text" name="DirectiveNumber">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Delete">
+    <input class="btn" type="submit" id="DeleteAD" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}

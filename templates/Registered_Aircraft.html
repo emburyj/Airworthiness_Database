@@ -13,13 +13,13 @@
         </tr>
         {% for aircraft in data.Aircraft %}
         <tr>
+            <td>{{ aircraft.ID }}</td>
             <td>{{ aircraft.Number }}</td>
             <td>{{ aircraft.Owner }}</td>
             <td>{{ aircraft.Model }}</td>
             <td>{{ aircraft.Status }}</td>
         </tr>
         {% endfor %}
-
     </tbody>
 </table>
 
