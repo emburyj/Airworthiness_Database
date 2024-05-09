@@ -22,3 +22,50 @@
 </table>
 
 {% endblock %}
+{% block create %}
+<form method="POST">
+    <legend><strong>Add {{ page_name }}</strong></legend>
+    <fieldset>
+        <label>Models Directives ID</label>
+        <input type="text" name="MDID">
+        <label>Model ID</label>
+        <input type="text" name="MID">
+        <label>AD ID</label>
+        <input type="text" name="ADID">
+    </fieldset>
+    <input class="btn" type="submit" id="NewMD" value="Add">
+    <input class="btn" type="button" value="Cancel">
+</form>
+{% endblock %}
+
+{% block update %}
+<form method="POST">
+    <legend><strong>Update {{ page_name }}</strong></legend>
+    <fieldset>
+        <label>Models Directives ID</label>
+        <input type="text" name="MDID">
+        <label>Model ID</label>
+        <input type="text" name="MID">
+        <label>AD ID</label>
+        <input type="text" name="ADID">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateMD" value="Update">
+    <input class="btn" type="button" value="Cancel">
+</form>
+{% endblock %}
+
+{% block delete %}
+<form method="POST">
+    <legend><strong>Delete {{ page_name }}</strong></legend>
+    <fieldset>
+        <label>Models Directives ID</label>
+        <input type="text" name="MDID">
+        <label>Model ID</label>
+        <input type="text" name="MID">
+        <label>AD ID</label>
+        <input type="text" name="ADID">
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteMD" value="Delete">
+    <input class="btn" type="button" value="Cancel">
+</form>
+{% endblock %}
