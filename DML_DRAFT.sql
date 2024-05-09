@@ -107,13 +107,13 @@ INNER JOIN Registered_Aircraft ON Registered_Aircraft.aircraft_id = Maintenance_
 GROUP BY Registered_Aircraft.n_number ORDER BY Maintenance_Records.maintenance_date
 
 -- display models/directives relationships grouped by model
-SELECT Models_Directives.model_id, Aircraft_Models.model_name, Models_Directives.ad_id, Airworthiness_Directives.ad_number FROM Models_Directives 
+SELECT Aircraft_Models.model_id, Aircraft_Models.model_name, Airworthiness_Directives.ad_id, Airworthiness_Directives.ad_number FROM Models_Directives
 INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id
 INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id
 GROUP BY Aircraft_Models.model_name ORDER BY Airworthiness_Directives.ad_number
 
 -- display models/directives relationships grouped by directive
-SELECT model_id, model_name, ad_id, ad_number FROM Models_Directives 
+SELECT Aircraft_Models.model_id, Aircraft_Models.model_name, Airworthiness_Directives.ad_id, Airworthiness_Directives.ad_number FROM Models_Directives
 INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id
 INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id
 GROUP BY Airworthiness_Directives.ad_number ORDER BY Aircraft_Models.model_name
