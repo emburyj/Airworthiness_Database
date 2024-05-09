@@ -7,15 +7,17 @@
 <table>
     <tbody>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+            {% for entity in entities %}
+                <th>{{ entity }}</th>
+            {% endfor %}
         </tr>
+        {% for record in data %}
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ record.MID }}</td>
+            <td>{{ record.AID }}</td>
+            <td>{{ record.Date }}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 
@@ -25,10 +27,12 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>Aircraft N Number</label>
+        <input type="text" name="NNumber">
+        <label>Maintenance Date</label>
+        <input type="text" name="MaintenanceDate">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Add">
+    <input class="btn" type="submit" id="NewMaintenance" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -37,10 +41,12 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>Aircraft N Number</label>
+        <input type="text" name="NNumber">
+        <label>Maintenance Date</label>
+        <input type="text" name="MaintenanceDate">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Update">
+    <input class="btn" type="submit" id="UpdateMaintenance" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -49,10 +55,12 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>Aircraft N Number</label>
+        <input type="text" name="NNumber">
+        <label>Maintenance Date</label>
+        <input type="text" name="MaintenanceDate">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Delete">
+    <input class="btn" type="submit" id="DeleteMaintenance" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}

@@ -24,28 +24,82 @@ def about():
 
 @app.route('/Airworthiness_Directives')
 def Airworthiness_Directives():
+    entities = ["AD ID", "Airworthiness Directive Number",
+                 "Airworthiness Directive Description", "Maintenance Required Date"]
+    desc = [
+            """The loss of the SPCU and ground through the P6 panel could result
+            in the loss of significant flightcrew instrumentation and displays.
+            This AD requires installing two bonding jumpers from the P6 panel
+            structure to primary structure.""",
+            """This emergency AD was prompted by a report of an in-flight departure
+                of a mid cabin door plug, which resulted in a rapid decompression of
+                the airplane. The FAA is issuing this AD to address the potential
+                in-flight loss of a mid cabin door plug, which could result in injury
+                to passengers and crew, the door impacting the airplane, and/or loss
+                of control of the airplane.""",
+                """To address incomplete installations of the over wing panel lug attachments
+                in the production assembly line, which, if not detected and corrected, could
+                reduce the structural integrity of the wing."""
+            ]
 
-    return render_template("Airworthiness_Directives.html", page_name="Airworthiness Directives")
+    data = [
+            {"ID": 1, "Number": "2024-06-03", "Description": desc[0], "Date": "2024-05-02"},
+            {"ID": 2, "Number": "2024-02-51_Emergency", "Description": desc[1], "Date": "2024-01-06"},
+            {"ID": 3, "Number": "2024-06-07", "Description": desc[2], "Date": "2024-05-22"},
+    ]
+
+    return render_template("Airworthiness_Directives.html", entities=entities, data=data, page_name="Airworthiness Directives")
 
 @app.route('/Registered_Aircraft')
 def Registered_Aircraft():
-
-    return render_template("Registered_Aircraft.html", page_name="Registered Aircraft")
+    entities = ["Aircraft ID", "N Number", "Owner Name", "Model Name", "Current Status"]
+    data = {
+            "Owners": ["Josh Embury", "Ian Bubier", "United Airlines", "Alaska Airlines"],
+            "Models": ["737-8", "737-9", "A320-214", "E1000"],
+            "Aircraft": [
+                        {"ID": 1, "Number": "N921AK", "Owner": "Josh Embury", "Model": "737-9", "Status": "Grounded for Maintenance"},
+                        {"ID": 2, "Number": "N200MR", "Owner": "Ian Bubier", "Model": "E1000", "Status": "In-Service"},
+                        {"ID": 3, "Number": "N291BT", "Owner": "Alaska Airlines", "Model": "737-9", "Status": "Pending Maintenance"},
+                        ]
+            }
+    return render_template("Registered_Aircraft.html",entities=entities, data=data, page_name="Registered Aircraft")
 
 @app.route('/Aircraft_Models')
 def Aircraft_Models():
-
-    return render_template("Aircraft_Models.html", page_name="Aircraft Models")
+    entities = ["Model ID", "Manufacturer Name", "Model Name"]
+    model_data = [
+                    {"ID": 1, "Manufacturer": "The Boeing Company", "Model": "737-8"},
+                    {"ID": 2, "Manufacturer": "The Boeing Company", "Model": "737-9"},
+                    {"ID": 3, "Manufacturer": "Airbus SAS", "Model": "A320-214"},
+                    {"ID": 4, "Manufacturer": "Epic Aircraft", "Model": "E1000"}
+                ]
+    return render_template("Aircraft_Models.html", entities=entities, data=model_data, page_name="Aircraft Models")
 
 @app.route('/Aircraft_Owners')
 def Aircraft_Owners():
+    entities = ["Owner ID", "Owner Name", "Owner Email Address"]
+    owner_data = [
+                    {"ID": 1, "Name": "Josh Embury", "Email": "emburyj@oregonstate.edu"},
+                    {"ID": 2, "Name": "Ian Bubier", "Email": "bubieri@oregonstate.edu"},
+                    {"ID": 3, "Name": "United Airlines", "Email": "therealunited@aol.com"},
+                    {"ID": 4, "Name": "Alaska Airlines", "Email": "alaskaair@hotmail.com"}
+                ]
 
-    return render_template("Aircraft_Owners.html", page_name="Aircraft Owners")
+    return render_template("Aircraft_Owners.html", entities=entities, data=owner_data, page_name="Aircraft Owners")
 
 @app.route('/Maintenance_Records')
 def Maintenance_Records():
+    entities = ["Maintenance ID", "Aircraft ID", "Maintenance Date"]
 
-    return render_template("Maintenance_Records.html", page_name="Maintenance Records")
+    data = [
+            {"MID": 1, "AID": 1, "Date": "2018-10-30"},
+            {"MID": 2, "AID": 1, "Date": "2019-01-15"},
+            {"MID": 3, "AID": 1, "Date": "2021-06-18"},
+            {"MID": 4, "AID": 2, "Date": "2023-07-29"},
+            {"MID": 5, "AID": 3, "Date": "2024-01-05"}
+            ]
+
+    return render_template("Maintenance_Records.html", entities=entities, data=data, page_name="Maintenance Records")
 
 # Listener
 if __name__ == "__main__":

@@ -7,15 +7,19 @@
 <table>
     <tbody>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+            {% for entity in entities %}
+                <th>{{ entity }}</th>
+            {% endfor %}
         </tr>
+        {% for aircraft in data.Aircraft %}
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ aircraft.ID }}</td>
+            <td>{{ aircraft.Number }}</td>
+            <td>{{ aircraft.Owner }}</td>
+            <td>{{ aircraft.Model }}</td>
+            <td>{{ aircraft.Status }}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 
@@ -25,10 +29,24 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>N Number</label>
+        <input type="text" name="NNumber">
+        <label>Aircraft Owner</label>
+        <select name="AircraftOwner">
+            {% for item in data.Owners %}
+                <option value={{ loop.index - 1 }}> {{ item }}</option>
+            {% endfor %}
+        </select>
+        <label>Aircraft Model</label>
+        <select name="AircraftModel">
+            {% for item in data.Models %}
+                <option value={{ loop.index - 1 }}> {{ item }}</option>
+            {% endfor %}
+        </select>
+        <label>Current Status</label>
+        <input type="text" name="CurrentStatus">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Add">
+    <input class="btn" type="submit" id="NewRegisteredAircraft" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -37,10 +55,24 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>N Number</label>
+        <input type="text" name="NNumber">
+        <label>Aircraft Owner</label>
+        <select name="AircraftOwner">
+            {% for item in data.Owners %}
+                <option value={{ loop.index - 1 }}> {{ item }}</option>
+            {% endfor %}
+        </select>
+        <label>Aircraft Model</label>
+        <select name="AircraftModel">
+            {% for item in data.Models %}
+                <option value={{ loop.index - 1 }}> {{ item }}</option>
+            {% endfor %}
+        </select>
+        <label>Current Status</label>
+        <input type="text" name="CurrentStatus">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Update">
+    <input class="btn" type="submit" id="UpdateRegisteredAircraft" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -49,10 +81,10 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label></label>
-        <input type="" name="">
+        <label>N Number</label>
+        <input type="text" name="NNumber">
     </fieldset>
-    <input class="btn" type="submit" id="" value="Delete">
+    <input class="btn" type="submit" id="DeleteRegisteredAircraft" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}

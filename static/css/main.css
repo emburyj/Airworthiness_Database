@@ -29,9 +29,9 @@
   }
   /*  ----- Table ----- */
 
-  table, th, td {
+  th, td {
     justify-content: center;
-    width: 70%;
+    width: 1%;
     margin: 0 auto;
     border: 1px solid;
     border-color: black;
