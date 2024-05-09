@@ -7,22 +7,26 @@
 <table>
     <tbody>
         <tr>
+            <th>Model ID</th>
             <th>Manufacturer Name</th>
             <th>Model Name</th>
         </tr>
         <tr>
+            <td>1</td>
             <td>The Boeing Company</td>
             <td>737-8</td>
         </tr>
         <tr>
+            <td>2</td>
             <td>The Boeing Company</td>
             <td>737-9</td>
         </tr>
         <tr>
+            <td>3</td>
             <td>Airbus SAS</td>
             <td>A320-214</td>
         </tr>
-            <tr>
+            <td>4</td>
             <td>Epic Aircraft</td>
             <td>E1000</td>
         </tr>
@@ -35,6 +39,8 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
+        <label>Model ID</label>
+        <input type="text" name="ModelID">
         <label>Manufacturer Name</label>
         <input type="text" name="AircraftManufacturer">
         <label>Model Name</label>
@@ -49,6 +55,8 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
+        <label>Model ID</label>
+        <input type="text" name="ModelID">
         <label>Manufacturer Name</label>
         <input type="text" name="AircraftManufacturer">
         <label>Model Name</label>
@@ -63,6 +71,8 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
+        <label>Model ID</label>
+        <input type="text" name="ModelID">
         <label>Model Name</label>
         <input type="text" name="AircraftModel">
     </fieldset>
