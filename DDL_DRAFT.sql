@@ -1,7 +1,9 @@
-USE cs340_bubieri;
+-- Uncommment and update USE [database name] operation and uncomment DROP TABLE IF EXISTS [table name] operations to use with an existing database.
+
+--USE [database name];
 
 -- Create Aircraft_Owners table and populate with example data
-DROP TABLE IF EXISTS Aircraft_Owners;
+--DROP TABLE IF EXISTS Aircraft_Owners;
 CREATE TABLE Aircraft_Owners (
     owner_id int NOT NULL UNIQUE AUTO_INCREMENT,
     owner_name varchar(50) UNIQUE NOT NULL,
@@ -34,7 +36,7 @@ VALUES
 );
 
 -- Create Aircraft_Models table and populate with example data
-DROP TABLE IF EXISTS Aircraft_Models;
+--DROP TABLE IF EXISTS Aircraft_Models;
 CREATE TABLE Aircraft_Models (
     model_id int NOT NULL UNIQUE AUTO_INCREMENT,
     manufacturer_name varchar(50) NOT NULL,
@@ -67,7 +69,7 @@ VALUES
 );
 
 -- Create Registered_Aircraft table and populate with example data
-DROP TABLE IF EXISTS Registered_Aircraft;
+--DROP TABLE IF EXISTS Registered_Aircraft;
 CREATE TABLE Registered_Aircraft (
     aircraft_id int NOT NULL UNIQUE AUTO_INCREMENT,
     n_number varchar(50) UNIQUE NOT NULL,
@@ -108,7 +110,7 @@ VALUES
 );
 
 -- Create Airworthiness_Directives table and populate with example data
-DROP TABLE IF EXISTS Airworthiness_Directives;
+--DROP TABLE IF EXISTS Airworthiness_Directives;
 CREATE TABLE Airworthiness_Directives (
     ad_id int NOT NULL UNIQUE AUTO_INCREMENT,
     ad_number varchar(50) UNIQUE NOT NULL,
@@ -150,7 +152,7 @@ VALUES
 );
 
 -- Create Maintenance_Records table and populate with example data
-DROP TABLE IF EXISTS Maintenance_Records;
+--DROP TABLE IF EXISTS Maintenance_Records;
 CREATE Table Maintenance_Records (
     maintenance_id int NOT NULL UNIQUE AUTO_INCREMENT,
     aircraft_id int NOT NULL,
@@ -194,7 +196,7 @@ VALUES
 );
 
 -- Create Models_Directives table and populate with example data
-DROP TABLE IF EXISTS Models_Directives;
+--DROP TABLE IF EXISTS Models_Directives;
 CREATE TABLE Models_Directives (
     md_id int NOT NULL UNIQUE AUTO_INCREMENT,
     model_id int NOT NULL,

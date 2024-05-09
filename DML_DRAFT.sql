@@ -23,6 +23,27 @@ INSERT INTO Maintenance_Records (aircraft_id, maintenance_date, maintenance_desc
 INSERT INTO Models_Directives (model_id, ad_id) VALUES (:model_id_dropdown, :ad_id_dropdown)
 
 
+-- DELETE QUERIES
+
+-- delete an aircraft owner
+DELETE FROM Aircraft_Owners WHERE owner_id = :selected_owner_id
+
+-- delete an aircraft model
+DELETE FROM Aircraft_Models WHERE model_id = :selected_model_id
+
+-- delete a registered aircraft
+DELETE FROM Registered_Aircraft WHERE aircraft_id = :selected_aircraft_id
+
+-- delete airworthiness directive
+DELETE FROM Airworthiness_Directives WHERE ad_id = :selected_ad_id
+
+--delete a maintenance record
+DELETE FROM Maintenance_Records WHERE maintenance_id = :selected_maintenance_id
+
+--delete a models directives relationship
+DELETE FROM Models_Directives WHERE model_id = :model_id_dropdown AND ad_id = :ad_id_dropdown
+
+
 -- UPDATE QUERIES
 
 -- update an aircraft owner
@@ -42,7 +63,10 @@ UPDATE Airworthiness_Directives SET ad_number = :ad_number_input, ad_description
 UPDATE Maintenance_Records SET aircraft_id = :aircraft_id_dropdown, maintenance_date = :maintenance_date_input, maintenance_description = :maintenance_description_input WHERE maintenance_id = :selected_maintenance_id
 
 -- update a models directives relationship
-UPDATE Models_Directives SET model_id = :model_id_dropdown, ad_id = :ad_id_dropdown WHERE md_id = :selected_model_id
+UPDATE Models_Directives SET model_id = :model_id_dropdown WHERE ad_id = :selected_ad_id
+
+-- update a model directives relationship
+UPDATE Models_Directives SET ad_id = :ad_id_dropdown WHERE  model_id = :selected_model_id
 
 
 -- SELECT QUERIES for general data display
@@ -77,7 +101,8 @@ INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model
 INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id
 GROUP BY ad_number ORDER BY ad_number
 
--- SELECT QUERIES for dropdown menus
+
+-- SELECT QUERIES for INSERT and UPDATE dropdown menus
 
 -- owner_id dropdown
 SELECT owner_id, owner_name FROM Aircraft_Owners ORDER BY owner_name
