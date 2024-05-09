@@ -1,6 +1,8 @@
 -- Uncommment and update USE [database name] operation and uncomment DROP TABLE IF EXISTS [table name] operations to use with an existing database.
 
---USE [database name];
+SET foreign_key_checks=0;
+
+--USE database name;
 
 -- Create Aircraft_Owners table and populate with example data
 --DROP TABLE IF EXISTS Aircraft_Owners;
@@ -114,7 +116,7 @@ VALUES
 CREATE TABLE Airworthiness_Directives (
     ad_id int NOT NULL UNIQUE AUTO_INCREMENT,
     ad_number varchar(50) UNIQUE NOT NULL,
-    ad_description varchar(511) NOT NULL,
+    ad_description text NOT NULL,
     maintenance_required_date date NOT NULL,
     PRIMARY KEY (ad_id)
 );
@@ -157,7 +159,7 @@ CREATE Table Maintenance_Records (
     maintenance_id int NOT NULL UNIQUE AUTO_INCREMENT,
     aircraft_id int NOT NULL,
     maintenance_date date NOT NULL,
-    maintenance_description varchar(511) NOT NULL,
+    maintenance_description text NOT NULL,
     PRIMARY KEY (maintenance_id),
     FOREIGN KEY (aircraft_id) REFERENCES Registered_Aircraft(aircraft_id) ON DELETE CASCADE
 );
@@ -187,7 +189,7 @@ VALUES
 (
     (SELECT aircraft_id FROM Registered_Aircraft WHERE n_number = "N200MR"),
     "2023-07-29",
-    "Reconfigured a whotsit."
+    "Reconfigured a whatsit."
 ),
 (
     (SELECT aircraft_id FROM Registered_Aircraft WHERE n_number = "N291BT"),
@@ -196,7 +198,7 @@ VALUES
 );
 
 -- Create Models_Directives table and populate with example data
---DROP TABLE IF EXISTS Models_Directives;
+-- TABLE IF EXISTS Models_Directives;
 CREATE TABLE Models_Directives (
     md_id int NOT NULL UNIQUE AUTO_INCREMENT,
     model_id int NOT NULL,
@@ -228,3 +230,5 @@ VALUES
     (SELECT model_id FROM Aircraft_Models WHERE model_name = "A320-214"),
     (SELECT ad_id FROM Airworthiness_Directives WHERE ad_number = "2024-06-07")
 );
+
+SET foreign_key_checks=1;
