@@ -89,27 +89,27 @@ def Aircraft_Owners():
 
 @app.route('/Maintenance_Records')
 def Maintenance_Records():
-    entities = ["Maintenance ID", "Aircraft ID", "Maintenance Date", "Maintenance Description"]
+    entities = ["Maintenance ID", "Aircraft ID", "N Number", "Maintenance Date", "Maintenance Description"]
 
     data = [
-            {"MID": 1, "AID": 1, "Date": "2018-10-30", "Description": "Fixed a thing."},
-            {"MID": 2, "AID": 1, "Date": "2019-01-15", "Description": "Repaired a doodad."},
-            {"MID": 3, "AID": 1, "Date": "2021-06-18", "Description": "Mended a thingamajig."},
-            {"MID": 4, "AID": 2, "Date": "2023-07-29", "Description": "Reconfigured a whotsit."},
-            {"MID": 5, "AID": 3, "Date": "2024-01-05", "Description": "Jury-rigged a whatchamacallit."}
+            {"MID": 1, "AID": 1, "Number": "N921AK", "Date": "2018-10-30", "Description": "Fixed a thing."},
+            {"MID": 2, "AID": 1, "Number": "N921AK", "Date": "2019-01-15", "Description": "Repaired a doodad."},
+            {"MID": 3, "AID": 1, "Number": "N921AK", "Date": "2021-06-18", "Description": "Mended a thingamajig."},
+            {"MID": 4, "AID": 2, "Number": "N200MR", "Date": "2023-07-29", "Description": "Reconfigured a whatsit."},
+            {"MID": 5, "AID": 3, "Number": "N291BT", "Date": "2024-01-05", "Description": "Jury-rigged a whatchamacallit."}
             ]
 
     return render_template("Maintenance_Records.html", entities=entities, data=data, page_name="Maintenance Records")
 
 @app.route('/Models_Directives')
 def Models_Directives():
-    entities = ["Models Directives ID", "Model ID", "AD ID"]
+    entities = ["Models Directives ID", "Model ID", "Model Name", "AD ID", "Airworthiness Directive Number"]
 
     data = [
-            {"MDID": 1, "MID": 2, "ADID": 2},
-            {"MDID": 2, "MID": 1, "ADID": 1},
-            {"MDID": 3, "MID": 2, "ADID": 1},
-            {"MDID": 4, "MID": 3, "ADID": 3}
+            {"MDID": 1, "MID": 2, "Model": "737-9", "ADID": 2,"Number": "2024-02-51_Emergency"},
+            {"MDID": 2, "MID": 1, "Model": "737-8", "ADID": 1,"Number": "2024-06-03"},
+            {"MDID": 3, "MID": 2, "Model": "737-9", "ADID": 1,"Number": "2024-06-03"},
+            {"MDID": 4, "MID": 3, "Model": "A320-214", "ADID": 3,"Number": "2024-06-07"}
             ]
 
     return render_template("Models_Directives.html", entities=entities, data=data, page_name="Models Impacted by Directives")
