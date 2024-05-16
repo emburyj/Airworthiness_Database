@@ -112,7 +112,7 @@ def Models_Directives():
             {"MDID": 4, "MID": 3, "ADID": 3}
             ]
 
-    return render_template("Models_Directives.html", entities=entities, data=data, page_name="Maintenance Records")
+    return render_template("Models_Directives.html", entities=entities, data=data, page_name="Models:Directives")
 
 
 # Listener
