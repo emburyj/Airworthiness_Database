@@ -35,8 +35,8 @@
         <input type="text" name="NNumber">
         <label>Aircraft Owner</label>
         <select name="AircraftOwner">
+            <option value=NULL> None</option>
             {% for item in data.Owners %}
-                <option value=NULL> None</option>
                 <option value={{ loop.index - 1 }}> {{ item }}</option>
             {% endfor %}
         </select>
