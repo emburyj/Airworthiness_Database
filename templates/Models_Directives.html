@@ -15,7 +15,9 @@
         <tr>
             <td>{{ record.MDID }}</td>
             <td>{{ record.MID }}</td>
+            <td>{{ record.Model }}</td>
             <td>{{ record.ADID }}</td>
+            <td>{{ record.Number }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -26,18 +28,18 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Model ID</label>
-        <select name="MDID">
-                <option value=1> 1</option>
-                <option value=2> 2</option>
-                <option value=3> 3</option>
-                <option value=4> 4</option>
-        </select>
-        <label>AD ID</label>
+        <label>Model Name</label>
         <select name="ModelID">
-                <option value=1> 1</option>
-                <option value=2> 2</option>
-                <option value=3> 3</option>
+                <option value=1> 737-8</option>
+                <option value=2> 737-9</option>
+                <option value=3> A320-214</option>
+                <option value=4> E1000</option>
+        </select>
+        <label>AD Number</label>
+        <select name="ADID">
+                <option value=1> 2024-06-03</option>
+                <option value=2> 2024-02-51_Emergency</option>
+                <option value=3> 2024-06-07</option>
         </select>
     </fieldset>
     <input class="btn" type="submit" id="NewMD" value="Add">
@@ -49,24 +51,25 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Models Directives ID</label>
+        <label>Relationship</label>
         <select name="MDID">
-                <option value=1> 1</option>
-                <option value=2> 2</option>
-                <option value=3> 3</option>
-                <option value=4> 4</option>
+                <option value=1> 737-9 2024-02-51_Emergency</option>
+                <option value=2> 737-8 2024-06-03</option>
+                <option value=3> 737-9 2024-06-03</option>
+                <option value=4> A320-214 2024-06-07</option>
         </select>
-        <label>Model ID</label>
+        <label>Model Name</label>
         <select name="ModelID">
-                <option value=1> 1</option>
-                <option value=2> 2</option>
-                <option value=3> 3</option>
+                <option value=1> 737-8</option>
+                <option value=2> 737-9</option>
+                <option value=3> A320-214</option>
+                <option value=4> E1000</option>
         </select>
-        <label>AD ID</label>
+        <label>AD Number</label>
         <select name="ADID">
-                <option value=1> 1</option>
-                <option value=2> 2</option>
-                <option value=3> 3</option>
+            <option value=1> 2024-06-03</option>
+            <option value=2> 2024-02-51_Emergency</option>
+            <option value=3> 2024-06-07</option>
         </select>
     </fieldset>
     <input class="btn" type="submit" id="UpdateMD" value="Update">
@@ -78,12 +81,12 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Models Directives ID</label>
-                <select name="ModelID">
-                <option value=1> 1</option>
-                <option value=2> 2</option>
-                <option value=3> 3</option>
-                <option value=4> 4</option>
+        <label>Relationship</label>
+        <select name="MDID">
+            <option value=1> 737-9 2024-02-51_Emergency</option>
+            <option value=2> 737-8 2024-06-03</option>
+            <option value=3> 737-9 2024-06-03</option>
+            <option value=4> A320-214 2024-06-07</option>
         </select>
     </fieldset>
     <input class="btn" type="submit" id="DeleteMD" value="Delete">

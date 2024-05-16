@@ -106,20 +106,8 @@ SELECT Maintenance_Records.maintenance_id, Registered_Aircraft.aircraft_id, Main
 INNER JOIN Registered_Aircraft ON Registered_Aircraft.aircraft_id = Maintenance_Records.aircraft_id
 GROUP BY Registered_Aircraft.n_number ORDER BY Maintenance_Records.maintenance_date
 
--- display models/directives relationships grouped by model
-SELECT Aircraft_Models.model_id, Aircraft_Models.model_name, Airworthiness_Directives.ad_id, Airworthiness_Directives.ad_number FROM Models_Directives
-INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id
-INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id
-GROUP BY Aircraft_Models.model_name ORDER BY Airworthiness_Directives.ad_number
 
--- display models/directives relationships grouped by directive
-SELECT Aircraft_Models.model_id, Aircraft_Models.model_name, Airworthiness_Directives.ad_id, Airworthiness_Directives.ad_number FROM Models_Directives
-INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id
-INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id
-GROUP BY Airworthiness_Directives.ad_number ORDER BY Aircraft_Models.model_name
-
-
--- SELECT QUERIES for INSERT and UPDATE dropdown menus
+-- SELECT QUERIES for dropdown menus
 
 -- owner_id dropdown
 SELECT owner_id, owner_name FROM Aircraft_Owners ORDER BY owner_name
@@ -132,3 +120,14 @@ SELECT aircraft_id, n_number FROM Registered_Aircraft ORDER BY n_number
 
 --ad_id dropdown
 SELECT ad_id, ad_number FROM Airworthiness_Directives ORDER BY ad_number
+
+-- md_id dropdown
+SELECT Models_Directives.md_id, CONCAT (Aircraft_Models.model_name, " ", Airworthiness_Directives.ad_number) AS MD_Dropdown FROM Models_Directives
+INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id
+INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id
+ORDER BY MD_Dropdown
+
+-- maintenance_id dropdown
+SELECT Maintenance_Records.maintenance_id, CONCAT (Registered_Aircraft.n_number, " ", Maintenance_Records.maintenance_date) AS Maintenance_Dropdown FROM Maintenance_Records
+INNER JOIN Registered_Aircraft ON Registered_Aircraft.aircraft_id = Maintenance_Records.aircraft_id
+ORDER BY Maintenance_Dropdown
