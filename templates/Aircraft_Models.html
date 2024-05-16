@@ -42,7 +42,12 @@
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
         <label>Aircraft Model ID</label>
-        <input type="text" name="ModelID">
+        <select name="ModelID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+                <option value=4> 4</option>
+        </select>
         <label>Manufacturer Name</label>
         <input type="text" name="AircraftManufacturer">
         <label>Model Name</label>
@@ -58,11 +63,12 @@
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
         <label>Aircraft Model ID</label>
-        <input type="text" name="ModelID">
-        <label>Manufacturer Name</label>
-        <input type="text" name="AircraftManufacturer">
-        <label>Model Name</label>
-        <input type="text" name="AircraftModel">
+        <select name="ModelID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+                <option value=4> 4</option>
+        </select>
     </fieldset>
     <input class="btn" type="submit" id="DeleteAircraftModel" value="Delete">
     <input class="btn" type="button" value="Cancel">

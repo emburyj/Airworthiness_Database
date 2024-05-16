@@ -26,8 +26,6 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Models Directives ID</label>
-        <input type="text" name="MDID">
         <label>Model ID</label>
         <input type="text" name="MID">
         <label>AD ID</label>
@@ -43,11 +41,24 @@
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
         <label>Models Directives ID</label>
-        <input type="text" name="MDID">
+        <select name="MDID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+                <option value=4> 4</option>
+        </select>
         <label>Model ID</label>
-        <input type="text" name="MID">
+        <select name="ModelID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+        </select>
         <label>AD ID</label>
-        <input type="text" name="ADID">
+        <select name="ADID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+        </select>
     </fieldset>
     <input class="btn" type="submit" id="UpdateMD" value="Update">
     <input class="btn" type="button" value="Cancel">
@@ -59,11 +70,12 @@
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
         <label>Models Directives ID</label>
-        <input type="text" name="MDID">
-        <label>Model ID</label>
-        <input type="text" name="MID">
-        <label>AD ID</label>
-        <input type="text" name="ADID">
+                <select name="ModelID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+                <option value=4> 4</option>
+        </select>
     </fieldset>
     <input class="btn" type="submit" id="DeleteMD" value="Delete">
     <input class="btn" type="button" value="Cancel">

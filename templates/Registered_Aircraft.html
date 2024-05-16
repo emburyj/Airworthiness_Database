@@ -58,7 +58,11 @@
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
         <label>Aircraft ID</label>
-        <input type="text" name="AircraftID">
+            <select name="AircraftID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+            </select>
         <label>N Number</label>
         <input type="text" name="NNumber">
         <label>Aircraft Owner</label>
@@ -86,9 +90,11 @@
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
         <label>Aircraft ID</label>
-        <input type="text" name="AircraftID">
-        <label>N Number</label>
-        <input type="text" name="NNumber">
+        <select name="AircraftID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+        </select>
     </fieldset>
     <input class="btn" type="submit" id="DeleteRegisteredAircraft" value="Delete">
     <input class="btn" type="button" value="Cancel">

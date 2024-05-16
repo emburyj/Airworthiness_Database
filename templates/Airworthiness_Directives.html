@@ -46,7 +46,11 @@
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
         <label>AD ID</label>
-        <input type="text" name="ADID">
+            <select name="ADID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+            </select>
         <label>AD Number</label>
         <input type="text" name="DirectiveNumber">
         <label>AD Description</label>
@@ -65,9 +69,12 @@
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
         <label>AD ID</label>
-        <input type="text" name="ADID">
-        <label>AD Number</label>
-        <input type="text" name="DirectiveNumber">
+            <select name="ADID">
+                <option value=1> 1</option>
+                <option value=2> 2</option>
+                <option value=3> 3</option>
+            </select>
+
     </fieldset>
     <input class="btn" type="submit" id="DeleteAD" value="Delete">
     <input class="btn" type="button" value="Cancel">

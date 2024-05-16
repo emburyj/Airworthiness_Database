@@ -103,7 +103,7 @@ def Maintenance_Records():
 
 @app.route('/Models_Directives')
 def Models_Directives():
-    entities = ["MD ID", "Model ID", "AD ID"]
+    entities = ["Models Directives ID", "Model ID", "AD ID"]
 
     data = [
             {"MDID": 1, "MID": 2, "ADID": 2},
