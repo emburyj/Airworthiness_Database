@@ -106,10 +106,10 @@ def Models_Directives():
     entities = ["Models Directives ID", "Model ID", "Model Name", "AD ID", "Airworthiness Directive Number"]
 
     data = [
-            {"MDID": 1, "MID": 2, "Model": "737-9", "ADID": 2,"Number": "2024-02-51_Emergency"},
-            {"MDID": 2, "MID": 1, "Model": "737-8", "ADID": 1,"Number": "2024-06-03"},
-            {"MDID": 3, "MID": 2, "Model": "737-9", "ADID": 1,"Number": "2024-06-03"},
-            {"MDID": 4, "MID": 3, "Model": "A320-214", "ADID": 3,"Number": "2024-06-07"}
+            {"MDID": 1, "MID": 2, "Model": "737-9", "ADID": 2, "Number": "2024-02-51_Emergency"},
+            {"MDID": 2, "MID": 1, "Model": "737-8", "ADID": 1, "Number": "2024-06-03"},
+            {"MDID": 3, "MID": 2, "Model": "737-9", "ADID": 1, "Number": "2024-06-03"},
+            {"MDID": 4, "MID": 3, "Model": "A320-214", "ADID": 3, "Number": "2024-06-07"}
             ]
 
     return render_template("Models_Directives.html", entities=entities, data=data, page_name="Models Impacted by Directives")
