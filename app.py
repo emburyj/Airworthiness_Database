@@ -1,18 +1,21 @@
 from flask import Flask, render_template, json, redirect
-# from flask_mysqldb import MySQL
+from flask_mysqldb import MySQL
 from flask import request
+from dotenv import load_dotenv, find_dotenv
 import os
 
 app = Flask(__name__)
 
-# app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
-# app.config['MYSQL_USER'] = '' # TBD
-# app.config['MYSQL_PASSWORD'] = '' # TBD
-# app.config['MYSQL_DB'] = '' # TBD
-# app.config['MYSQL_CURSORCLASS'] = "DictCursor"
+load_dotenv(find_dotenv())
+
+app.config['MYSQL_HOST'] = os.environ.get("340DBHOST")
+app.config['MYSQL_USER'] = os.environ.get("340DBUSER")
+app.config['MYSQL_PASSWORD'] = os.environ.get("340DBPW")
+app.config['MYSQL_DB'] = os.environ.get("340DB")
+app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
 
-# mysql = MySQL(app)
+mysql = MySQL(app)
 
 
 
@@ -75,15 +78,55 @@ def Aircraft_Models():
                 ]
     return render_template("Aircraft_Models.html", entities=entities, data=model_data, page_name="Aircraft Models")
 
-@app.route('/Aircraft_Owners')
+@app.route('/Aircraft_Owners', methods=["POST", "GET"])
 def Aircraft_Owners():
     entities = ["Owner ID", "Owner Name", "Owner Email Address"]
-    owner_data = [
-                    {"ID": 1, "Name": "Josh Embury", "Email": "emburyj@oregonstate.edu"},
-                    {"ID": 2, "Name": "Ian Bubier", "Email": "bubieri@oregonstate.edu"},
-                    {"ID": 3, "Name": "United Airlines", "Email": "therealunited@aol.com"},
-                    {"ID": 4, "Name": "Alaska Airlines", "Email": "alaskaair@hotmail.com"}
-                ]
+    # if request.method == "GET":
+    # display owners query
+    query1 = "SELECT * FROM Aircraft_Owners ORDER BY owner_name;"
+    cur = mysql.connection.cursor()
+    cur.execute(query1)
+    owner_data = cur.fetchall()
+
+
+    if request.method == "POST":
+        # Create New Owner
+        # if user presses Add button for new owner
+        if request.form.get("NewOwner"):
+            # get the inputs from text boxes
+            owner_name_input = request.form["OwnerName"]
+            owner_email_input = request.form["OwnerEmail"]
+
+            # create new owner query
+            query = "INSERT INTO Aircraft_Owners (owner_name, owner_email) VALUES (%s, %s)"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (owner_name_input, owner_email_input))
+            mysql.connection.commit()
+
+        # Update Owner
+        # if user presses Update button
+        if request.form.get("UpdateOwner"):
+            dropdown_name = str(request.form.get("OwnerDropdownName"))
+            owner_name_input = request.form["OwnerName"]
+            owner_email_input = request.form["OwnerEmail"]
+            # update owner query
+            query = "UPDATE Aircraft_Owners SET owner_name = %s, owner_email = %s WHERE owner_name = %s"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (owner_name_input, owner_email_input, dropdown_name))
+            mysql.connection.commit()
+
+        # Delete Owner
+        # if user presses Delete button
+        if request.form.get("DeleteOwner"):
+            dropdown_name = str(request.form.get("OwnerDropdownName"))
+            # delete owner query
+            query = f"DELETE FROM Aircraft_Owners WHERE owner_name = '{dropdown_name}'"
+            cur = mysql.connection.cursor()
+            cur.execute(query)
+            mysql.connection.commit()
+
+        # refresh page after post
+        return redirect('/Aircraft_Owners')
 
     return render_template("Aircraft_Owners.html", entities=entities, data=owner_data, page_name="Aircraft Owners")
 
@@ -119,4 +162,4 @@ def Models_Directives():
 if __name__ == "__main__":
 
     #Start the app on port 3000, it will be different once hosted
-    app.run(port=2468, debug=False)
+    app.run(port=3000, debug=True)

@@ -12,11 +12,11 @@
             {% endfor %}
         </tr>
         {% for owner in data %}
-        <tr>
-            <td>{{ owner.ID }}</td>
-            <td>{{ owner.Name }}</td>
-            <td>{{ owner.Email }}</td>
-        </tr>
+            <tr>
+                <td>{{ owner.owner_id }}</td>
+                <td>{{ owner.owner_name }}</td>
+                <td>{{ owner.owner_email }}</td>
+            </tr>
         {% endfor %}
     </tbody>
 </table>
@@ -28,12 +28,12 @@
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
         <label>Owner Name</label>
-        <input type="text" name="OwnerName">
+        <input type="text" name="OwnerName" id="OwnerName">
         <label>Owner Email Address</label>
-        <input type="text" name="OwnerEmail">
+        <input type="text" name="OwnerEmail" id=OwnerEmail>
     </fieldset>
-    <input class="btn" type="submit" id="NewOwner" value="Add">
-    <input class="btn" type="button" value="Cancel">
+    <input class="btn" type="submit" name="NewOwner" id="NewOwner" value="Add">
+    <input class="btn" type="submit" value="Cancel">
 </form>
 {% endblock %}
 
@@ -42,19 +42,18 @@
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
         <label>Owner</label>
-        <select name="OwnerID">
-                <option value=1> Josh Embury</option>
-                <option value=2> Ian Bubier</option>
-                <option value=3> United Airlines</option>
-                <option value=4> Alaska Airlines</option>
+        <select name="OwnerDropdownName">
+            {% for owner in data %}
+                <option value="{{ owner.owner_name }}">{{ owner.owner_name }}</option>
+            {% endfor %}
         </select>
         <label>Owner Name</label>
-        <input type="text" name="OwnerName">
+        <input type="text" name="OwnerName" id="OwnerName">
         <label>Owner Email Address</label>
-        <input type="text" name="OwnerEmail">
+        <input type="text" name="OwnerEmail" id="OwnerName">
     </fieldset>
-    <input class="btn" type="submit" id="UpdateOwner" value="Update">
-    <input class="btn" type="button" value="Cancel">
+    <input class="btn" type="submit" name="UpdateOwner" id="UpdateOwner" value="Update">
+    <input class="btn" type="submit" value="Cancel">
 </form>
 {% endblock %}
 
@@ -63,14 +62,13 @@
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
         <label>Owner</label>
-        <select name="OwnerID">
-            <option value=1> Josh Embury</option>
-            <option value=2> Ian Bubier</option>
-            <option value=3> United Airlines</option>
-            <option value=4> Alaska Airlines</option>
+        <select name="OwnerDropdownName">
+            {% for owner in data %}
+                <option value="{{ owner.owner_name }}">{{ owner.owner_name }}</option>
+            {% endfor %}
         </select>
     </fieldset>
-    <input class="btn" type="submit" id="DeleteOwner" value="Delete">
-    <input class="btn" type="button" value="Cancel">
+    <input class="btn" type="submit" name="DeleteOwner" id="DeleteOwner" value="Delete">
+    <input class="btn" type="submit" value="Cancel">
 </form>
 {% endblock %}
