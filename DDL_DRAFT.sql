@@ -2,7 +2,7 @@
 
 SET foreign_key_checks=0;
 
---USE database name;
+--USE [database name];
 
 -- Create Aircraft_Owners table and populate with example data
 --DROP TABLE IF EXISTS Aircraft_Owners;
@@ -198,7 +198,7 @@ VALUES
 );
 
 -- Create Models_Directives table and populate with example data
--- TABLE IF EXISTS Models_Directives;
+--DROP TABLE IF EXISTS Models_Directives;
 CREATE TABLE Models_Directives (
     md_id int NOT NULL UNIQUE AUTO_INCREMENT,
     model_id int NOT NULL,
