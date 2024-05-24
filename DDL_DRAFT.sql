@@ -1,4 +1,4 @@
--- Uncommment and update USE [database name] operation and uncomment DROP TABLE IF EXISTS [table name] operations to use with an existing database.
+-- Uncomment and update USE [database name] operation and uncomment DROP TABLE IF EXISTS [table name] operations to use with an existing database.
 
 SET foreign_key_checks=0;
 
