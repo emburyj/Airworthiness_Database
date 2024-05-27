@@ -69,7 +69,7 @@ def Airworthiness_Directives():
         if request.form.get("DeleteAircraftModel"):
             ad_id_select = str(request.form.get("ADID"))
             # delete AD query
-            query = f"DELETE FROM Aircraft_Models WHERE model_id = '{ad_id_select}'"
+            query = f"DELETE FROM Airworthiness_Directives WHERE ad_id = '{ad_id_select}'"
             cur = mysql.connection.cursor()
             cur.execute(query)
             mysql.connection.commit()
@@ -199,11 +199,53 @@ def Maintenance_Records():
 
 @app.route('/Models_Directives')
 def Models_Directives():
-    entities = ["Models Directives ID", "Model ID", "Model Name", "AD ID", "Airworthiness Directive Number"]
+    entities = ["Models Directives ID", "Model ID", "Model Name", "AD ID", "Airworthiness Directive Number"]    # if request.method == "GET":
+    # display models query
+    query = "SELECT * FROM Models_Directives ORDER BY md_id;"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    md_data = cur.fetchall()
 
-    data = []
+    if request.method == "POST":
 
-    return render_template("Models_Directives.html", entities=entities, data=data, page_name="Models Impacted by Directives")
+        # Create New MD
+        # if user presses Add button for new model
+        if request.form.get("NewMD"):
+            # get the inputs from text boxes
+            model_id_input = request.form["ModelID"]
+            ad_id_input = request.form["ADID"]
+            # create new md query
+            query = "INSERT INTO Models_Directives (model_id, ad_id) VALUES (%s, %s)"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (model_id_input, ad_id_input))
+            mysql.connection.commit()
+
+        # Update MD
+        # if user presses Update button
+        if request.form.get("UpdateMD"):
+            md_id_select = str(request.form.get("MDID"))
+            model_id_input = request.form["ModelID"]
+            ad_id_input = request.form["ADID"]
+            # update md query
+            query = "UPDATE Models_Directives SET model_id = %s, ad_id = %s WHERE md_id = %s"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (model_id_input, ad_id_input, md_id_select))
+            mysql.connection.commit()
+
+        # Delete MD
+        # if user presses Delete button
+        if request.form.get("DeleteMD"):
+            md_id_select = str(request.form.get("MDID"))
+            # delete md query
+            query = f"DELETE FROM Models_Directives WHERE md_id = '{md_id_select}'"
+            cur = mysql.connection.cursor()
+            cur.execute(query)
+            mysql.connection.commit()
+
+        # refresh page after post
+        return redirect('/Models_Directives')
+
+    return render_template("Models_Directives.html", entities=entities, data=md_data, page_name="Models Impacted by Directives")
 
 
 # Listener
