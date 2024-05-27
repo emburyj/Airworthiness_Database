@@ -27,8 +27,7 @@ def about():
 
 @app.route('/Airworthiness_Directives')
 def Airworthiness_Directives():
-    entities = ["AD ID", "Airworthiness Directive Number",
-                 "Airworthiness Directive Description", "Maintenance Required Date"]
+    entities = ["AD ID", "Airworthiness Directive Number", "Airworthiness Directive Description", "Maintenance Required Date"]
     # if request.method == "GET":
     # display ADs query
     query = "SELECT * FROM Airworthiness_Directives ORDER BY ad_number;"
@@ -81,10 +80,63 @@ def Airworthiness_Directives():
 
 @app.route('/Registered_Aircraft')
 def Registered_Aircraft():
-    entities = ["Aircraft ID", "N Number", "Owner ID","Owner Name", "Model ID","Model Name", "Current Status"]
-    data = ()
+    entities = ["Aircraft ID", "N Number", "Owner Name", "Model Name", "Current Status"]
+    # if request.method == "GET":
+    # display models query
+    query = ("SELECT Registered_Aircraft.aircraft_id, Registered_Aircraft.n_number, Aircraft_Owners.owner_id,"
+             "Aircraft_Owners.owner_name, Aircraft_Models.model_id, Aircraft_Models.model_name,"
+             "Registered_Aircraft.status FROM Registered_Aircraft"
+             "INNER JOIN Aircraft_Owners on Aircraft_Owners.owner_id = Registered_Aircraft.owner_id"
+             "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Registered_Aircraft = model_id"
+             "ORDER BY model_name;")
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    aircraft_data = cur.fetchall()
 
-    return render_template("Registered_Aircraft.html",entities=entities, data=data, page_name="Registered Aircraft")
+    if request.method == "POST":
+
+        # Create New Aircraft
+        # if user presses Add button for new model
+        if request.form.get("NewRegisteredAircraft"):
+            # get the inputs from text boxes
+            n_number_input = request.form["NNumber"]
+            owner_id_select = request.form["AircraftOwner"]
+            model_id_select = request.form["AircraftModel"]
+            status_input = request.form["CurrentStatus"]
+            # create new aircraft query
+            query = "INSERT INTO Registered_Aircraft (n_number_input, owner_id_select, model_id_select, status_input) VALUES (%s, %s, %s, %s)"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (n_number_input, owner_id_select, model_id_select, status_input))
+            mysql.connection.commit()
+
+        # Update Aircraft
+        # if user presses Update button
+        if request.form.get("UpdateRegisteredAircraft"):
+            aircraft_id_select = str(request.form.get("AircraftID"))
+            n_number_input = request.form["NNumber"]
+            owner_id_select = request.form["AircraftOwner"]
+            model_id_select = request.form["AircraftModel"]
+            status_input = request.form["CurrentStatus"]
+            # update aircraft query
+            query = "UPDATE Registered_Aircraft SET n_number = %s, owner_id = %s, model_id = %s, status = %s WHERE aircraft_id = %s"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (n_number_input, owner_id_select, model_id_select, status_input, aircraft_id_select))
+            mysql.connection.commit()
+
+        # Delete Aircraft
+        # if user presses Delete button
+        if request.form.get("DeleteRegisteredAircraft"):
+            aircraft_id_select = str(request.form.get("AircraftID"))
+            # delete aircraft query
+            query = f"DELETE FROM Registered_Aircraft WHERE aircraft_id = '{aircraft_id_select}'"
+            cur = mysql.connection.cursor()
+            cur.execute(query)
+            mysql.connection.commit()
+
+        # refresh page after post
+        return redirect('/Registered_Aircraft')
+
+    return render_template("Registered_Aircraft.html",entities=entities, data=aircraft_data, page_name="Registered Aircraft")
 
 @app.route('/Aircraft_Models')
 def Aircraft_Models():
@@ -199,9 +251,13 @@ def Maintenance_Records():
 
 @app.route('/Models_Directives')
 def Models_Directives():
-    entities = ["Models Directives ID", "Model ID", "Model Name", "AD ID", "Airworthiness Directive Number"]    # if request.method == "GET":
+    entities = ["Models Directives ID", "Model Name", "Airworthiness Directive Number"]    # if request.method == "GET":
     # display models query
-    query = "SELECT * FROM Models_Directives ORDER BY md_id;"
+    query = ("SELECT Models_Directives.md_id, Models_Directives.model_id, Models_Directives.ad_id,"
+             "Aircraft_Models.model_name, Airworthiness_Directives.ad_number FROM Models_Directives"
+             "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id"
+             "INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id"
+             "ORDER BY md_id;")
     cur = mysql.connection.cursor()
     cur.execute(query)
     md_data = cur.fetchall()
@@ -212,24 +268,24 @@ def Models_Directives():
         # if user presses Add button for new model
         if request.form.get("NewMD"):
             # get the inputs from text boxes
-            model_id_input = request.form["ModelID"]
-            ad_id_input = request.form["ADID"]
+            model_id_select = request.form["ModelID"]
+            ad_id_select = request.form["ADID"]
             # create new md query
             query = "INSERT INTO Models_Directives (model_id, ad_id) VALUES (%s, %s)"
             cur = mysql.connection.cursor()
-            cur.execute(query, (model_id_input, ad_id_input))
+            cur.execute(query, (model_id_select, ad_id_select))
             mysql.connection.commit()
 
         # Update MD
         # if user presses Update button
         if request.form.get("UpdateMD"):
             md_id_select = str(request.form.get("MDID"))
-            model_id_input = request.form["ModelID"]
-            ad_id_input = request.form["ADID"]
+            model_id_select = request.form["ModelID"]
+            ad_id_select = request.form["ADID"]
             # update md query
             query = "UPDATE Models_Directives SET model_id = %s, ad_id = %s WHERE md_id = %s"
             cur = mysql.connection.cursor()
-            cur.execute(query, (model_id_input, ad_id_input, md_id_select))
+            cur.execute(query, (model_id_select, ad_id_select, md_id_select))
             mysql.connection.commit()
 
         # Delete MD
