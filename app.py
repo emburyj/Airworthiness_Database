@@ -44,9 +44,53 @@ def Registered_Aircraft():
 @app.route('/Aircraft_Models')
 def Aircraft_Models():
     entities = ["Model ID", "Manufacturer Name", "Model Name"]
-    data = ()
+    # if request.method == "GET":
+    # display models query
+    query = "SELECT * FROM Aircraft_Models ORDER BY model_name;"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    model_data = cur.fetchall()
 
-    return render_template("Aircraft_Models.html", entities=entities, data=data, page_name="Aircraft Models")
+    if request.method == "POST":
+        # Create New Model
+        # if user presses Add button for new model
+        if request.form.get("NewAircraftModel"):
+            # get the inputs from text boxes
+            manufacturer_name_input = request.form["AircraftManufacturer"]
+            model_name_input = request.form["AircraftModel"]
+
+            # create new model query
+            query = "INSERT INTO Aircraft_Models (manufacturer_name, model_name) VALUES (%s, %s)"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (manufacturer_name_input, model_name_input))
+            mysql.connection.commit()
+
+        # Update Model
+        # if user presses Update button
+        if request.form.get("UpdateAircraftModel"):
+            model_id_select = str(request.form.get("ModelID"))
+            manufacturer_name_input = request.form["AircraftManufacturer"]
+            model_name_input = request.form["AircraftModel"]
+            # update model query
+            query = "UPDATE Aircraft_Models SET manufacturer_name = %s, model_name = %s WHERE model_id = %s"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (manufacturer_name_input, model_name_input, model_id_select))
+            mysql.connection.commit()
+
+        # Delete Model
+        # if user presses Delete button
+        if request.form.get("DeleteAircraftModel"):
+            model_id_select = str(request.form.get("ModelID"))
+            # delete model query
+            query = f"DELETE FROM Aircraft_Models WHERE model_name = '{model_id_select}'"
+            cur = mysql.connection.cursor()
+            cur.execute(query)
+            mysql.connection.commit()
+
+        # refresh page after post
+        return redirect('/Aircraft_Models')
+
+    return render_template("Aircraft_Models.html", entities=entities, data=model_data, page_name="Aircraft Models")
 
 @app.route('/Aircraft_Owners', methods=["POST", "GET"])
 def Aircraft_Owners():

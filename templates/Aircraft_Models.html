@@ -43,7 +43,9 @@
     <fieldset>
         <label>Model</label>
         <select name="ModelID">
-            <option value=1></option>
+            {% for model in data %}
+                <option value="{{ model.model_id }}">{{ model.model_name }}</option>
+            {% endfor %}
         </select>
         <label>Manufacturer Name</label>
         <input type="text" name="AircraftManufacturer">
@@ -61,7 +63,9 @@
     <fieldset>
         <label>Model</label>
         <select name="ModelID">
-            <option value=1></option>
+            {% for model in data %}
+                <option value="{{ model.model_id }}">{{ model.model_name }}</option>
+            {% endfor %}
         </select>
     </fieldset>
     <input class="btn" type="submit" id="DeleteAircraftModel" value="Delete">
