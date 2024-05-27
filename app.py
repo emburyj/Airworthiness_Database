@@ -30,7 +30,7 @@ def Airworthiness_Directives():
     entities = ["AD ID", "Airworthiness Directive Number", "Airworthiness Directive Description", "Maintenance Required Date"]
     # if request.method == "GET":
     # display ADs query
-    query = "SELECT * FROM Airworthiness_Directives ORDER BY ad_number;"
+    query = "SELECT * FROM Airworthiness_Directives ORDER BY ad_number"
     cur = mysql.connection.cursor()
     cur.execute(query)
     ad_data = cur.fetchall()
@@ -83,12 +83,10 @@ def Registered_Aircraft():
     entities = ["Aircraft ID", "N Number", "Owner Name", "Model Name", "Current Status"]
     # if request.method == "GET":
     # display models query
-    query = ("SELECT Registered_Aircraft.aircraft_id, Registered_Aircraft.n_number, Aircraft_Owners.owner_id,"
-             "Aircraft_Owners.owner_name, Aircraft_Models.model_id, Aircraft_Models.model_name,"
-             "Registered_Aircraft.status FROM Registered_Aircraft"
+    query = ("SELECT Registered_Aircraft.*, Aircraft_Owners.owner_name, Aircraft_Models.model_name FROM Registered_Aircraft"
              "INNER JOIN Aircraft_Owners on Aircraft_Owners.owner_id = Registered_Aircraft.owner_id"
              "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Registered_Aircraft = model_id"
-             "ORDER BY model_name;")
+             "ORDER BY model_name")
     cur = mysql.connection.cursor()
     cur.execute(query)
     aircraft_data = cur.fetchall()
@@ -143,7 +141,7 @@ def Aircraft_Models():
     entities = ["Model ID", "Manufacturer Name", "Model Name"]
     # if request.method == "GET":
     # display models query
-    query = "SELECT * FROM Aircraft_Models ORDER BY model_name;"
+    query = "SELECT * FROM Aircraft_Models ORDER BY model_name"
     cur = mysql.connection.cursor()
     cur.execute(query)
     model_data = cur.fetchall()
@@ -243,21 +241,66 @@ def Aircraft_Owners():
 
 @app.route('/Maintenance_Records')
 def Maintenance_Records():
-    entities = ["Maintenance ID", "Aircraft ID", "N Number", "Maintenance Date", "Maintenance Description"]
+    entities = ["Maintenance ID", "N Number", "Maintenance Date", "Maintenance Description"]
+    # display models query
+    query = ("SELECT Maintenance_Records.*, Registered_Aircraft.n_number FROM Maintenance_Records"
+             "INNER JOIN Registered_Aircraft ON Registered_Aircraft.aircraft_id = Maintenance_Records.aircraft_id"
+             "ORDER BY Registered_Aircraft")
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    maintenance_data = cur.fetchall()
 
-    data = []
+    if request.method == "POST":
 
-    return render_template("Maintenance_Records.html", entities=entities, data=data, page_name="Maintenance Records")
+        # Create New MD
+        # if user presses Add button for new model
+        if request.form.get("NewRecord"):
+            # get the inputs from text boxes
+            aircraft_id_select = str(request.form.get("NNumber"))
+            date_input = request.form["RecordDate"]
+            description_input = request.form["RecordDescription"]
+            # create new md query
+            query = "INSERT INTO Maintenance_Records (aircraft_id, maintenance_date, maintenance_description) VALUES (%s, %s, %s)"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (aircraft_id_select, date_input, description_input))
+            mysql.connection.commit()
+
+        # Update MD
+        # if user presses Update button
+        if request.form.get("UpdateRecord"):
+            maintenance_id_select = str(request.form.get("RecordID"))
+            aircraft_id_select = str(request.form.get("NNumber"))
+            date_input = request.form["RecordDate"]
+            description_input = request.form["RecordDescription"]
+            # update md query
+            query = "UPDATE Maintenance_Records SET aircraft_id = %s, maintenance_date = %s, maintenance_description = %s WHERE maintenance_id = %s"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (aircraft_id_select, date_input, description_input, maintenance_id_select))
+            mysql.connection.commit()
+
+        # Delete MD
+        # if user presses Delete button
+        if request.form.get("DeleteRecord"):
+            maintenance_id_select = str(request.form.get("RecordID"))
+            # delete md query
+            query = f"DELETE FROM Maintenance_Records WHERE maintenance_id = '{maintenance_id_select}'"
+            cur = mysql.connection.cursor()
+            cur.execute(query)
+            mysql.connection.commit()
+
+        # refresh page after post
+        return redirect('/Maintenance_Records')
+
+    return render_template("Maintenance_Records.html", entities=entities, data=maintenance_data, page_name="Maintenance Records")
 
 @app.route('/Models_Directives')
 def Models_Directives():
     entities = ["Models Directives ID", "Model Name", "Airworthiness Directive Number"]    # if request.method == "GET":
     # display models query
-    query = ("SELECT Models_Directives.md_id, Models_Directives.model_id, Models_Directives.ad_id,"
-             "Aircraft_Models.model_name, Airworthiness_Directives.ad_number FROM Models_Directives"
+    query = ("SELECT Models_Directives.*, Aircraft_Models.model_name, Airworthiness_Directives.ad_number FROM Models_Directives"
              "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id"
              "INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id"
-             "ORDER BY md_id;")
+             "ORDER BY Models_Directives.md_id")
     cur = mysql.connection.cursor()
     cur.execute(query)
     md_data = cur.fetchall()
