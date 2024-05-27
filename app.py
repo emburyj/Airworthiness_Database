@@ -82,7 +82,7 @@ def Aircraft_Models():
         if request.form.get("DeleteAircraftModel"):
             model_id_select = str(request.form.get("ModelID"))
             # delete model query
-            query = f"DELETE FROM Aircraft_Models WHERE model_name = '{model_id_select}'"
+            query = f"DELETE FROM Aircraft_Models WHERE model_id = '{model_id_select}'"
             cur = mysql.connection.cursor()
             cur.execute(query)
             mysql.connection.commit()
