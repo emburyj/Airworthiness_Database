@@ -65,7 +65,7 @@ def Airworthiness_Directives():
 
         # Delete AD
         # if user presses Delete button
-        if request.form.get("DeleteAircraftModel"):
+        if request.form.get("DeleteAD"):
             ad_id_select = str(request.form.get("ADID"))
             # delete AD query
             query = f"DELETE FROM Airworthiness_Directives WHERE ad_id = '{ad_id_select}'"
