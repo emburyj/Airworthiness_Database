@@ -27,7 +27,7 @@ def about():
 
 @app.route('/Airworthiness_Directives')
 def Airworthiness_Directives():
-    entities = ["AD ID", "Airworthiness Directive Number", "Airworthiness Directive Description", "Maintenance Required Date"]
+    entities = ["Airworthiness Directive ID", "Airworthiness Directive Number", "Airworthiness Directive Description", "Maintenance Required Date"]
     # if request.method == "GET":
     # display ADs query
     query = "SELECT * FROM Airworthiness_Directives ORDER BY ad_number"
@@ -219,7 +219,7 @@ def Aircraft_Owners():
             owner_name_input = request.form["OwnerName"]
             owner_email_input = request.form["OwnerEmail"]
             # update owner query
-            query = "UPDATE Aircraft_Owners SET owner_name = %s, owner_email = %s WHERE owner_name = %s"
+            query = "UPDATE Aircraft_Owners SET owner_name = %s, owner_email = %s WHERE owner_id = %s"
             cur = mysql.connection.cursor()
             cur.execute(query, (owner_name_input, owner_email_input, dropdown_name))
             mysql.connection.commit()
@@ -229,7 +229,7 @@ def Aircraft_Owners():
         if request.form.get("DeleteOwner"):
             dropdown_name = str(request.form.get("OwnerDropdownName"))
             # delete owner query
-            query = f"DELETE FROM Aircraft_Owners WHERE owner_name = '{dropdown_name}'"
+            query = f"DELETE FROM Aircraft_Owners WHERE owner_id = '{dropdown_name}'"
             cur = mysql.connection.cursor()
             cur.execute(query)
             mysql.connection.commit()

@@ -44,7 +44,7 @@
         <label>Owner</label>
         <select name="OwnerDropdownName">
             {% for owner in data %}
-                <option value="{{ owner.owner_name }}">{{ owner.owner_name }}</option>
+                <option value="{{ owner.owner_id }}">{{ owner.owner_name }}</option>
             {% endfor %}
         </select>
         <label>Owner Name</label>
@@ -64,7 +64,7 @@
         <label>Owner</label>
         <select name="OwnerDropdownName">
             {% for owner in data %}
-                <option value="{{ owner.owner_name }}">{{ owner.owner_name }}</option>
+                <option value="{{ owner.owner_id }}">{{ owner.owner_name }}</option>
             {% endfor %}
         </select>
     </fieldset>

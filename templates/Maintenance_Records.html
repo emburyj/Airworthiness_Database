@@ -13,10 +13,10 @@
         </tr>
         {% for record in data %}
         <tr>
-            <td>{{ record.MID }}</td>
-            <td>{{ record.Number }}</td>
-            <td>{{ record.Date }}</td>
-            <td>{{ record.Description }}</td>
+            <td>{{ record.maintenance_id }}</td>
+            <td>{{ record.n_number }}</td>
+            <td>{{ record.maintenance_date }}</td>
+            <td>{{ record.maintenance_description }}</td>
         </tr>
         {% endfor %}
     </tbody>
