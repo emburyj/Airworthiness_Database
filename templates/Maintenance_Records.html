@@ -13,11 +13,10 @@
         </tr>
         {% for record in data %}
         <tr>
-            <td>{{ record.MID }}</td>
-            <td>{{ record.AID }}</td>
-            <td>{{ record.Number }}</td>
-            <td>{{ record.Date }}</td>
-            <td>{{ record.Description }}</td>
+            <td>{{ record.maintenance_id }}</td>
+            <td>{{ record.n_number }}</td>
+            <td>{{ record.maintenance_date }}</td>
+            <td>{{ record.maintenance_description }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -30,11 +29,13 @@
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
         <label>Aircraft N Number</label>
-        <select name="Record">
-            <option value=1></option>
+        <select name="NNumber">
+            {% for record in data %}
+                <option value="{{ record.aircraft_id }}">{{ record.n_number }}</option>
+            {% endfor %}
         </select>
         <label>Maintenance Date</label>
-        <input type="text" name="RecordDate">
+        <input type="date" name="RecordDate">
         <label>Maintenance Description</label>
         <input type="text" name="RecordDescription">
     </fieldset>
@@ -48,13 +49,19 @@
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
         <label>Maintenance Record ID</label>
-        <select name="Record">
-            <option value=1></option>
+        <select name="RecordID">
+            {% for record in data %}
+                <option value="{{ record.maintenance_id }}">{{ record.n_number }} {{ record.maintenance_date }}</option>
+            {% endfor %}
         </select>
         <label>Aircraft N Number</label>
-        <input type="text" name="NNumber">
+        <select name="NNumber">
+            {% for record in data %}
+                <option value="{{ record.aircraft_id }}">{{ record.n_number }}</option>
+            {% endfor %}
+        </select>
         <label>Maintenance Date</label>
-        <input type="text" name="RecordDate">
+        <input type="date" name="RecordDate">
         <label>Maintenance Description</label>
         <input type="text" name="RecordDescription">
     </fieldset>
@@ -68,8 +75,10 @@
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
         <label>Maintenance Record ID</label>
-        <select name="Record">
-            <option value=1></option>
+        <select name="RecordID">
+            {% for record in data %}
+                <option value="{{ record.maintenance_id }}">{{ record.n_number }} {{ record.maintenance_date }}</option>
+            {% endfor %}
         </select>
     </fieldset>
     <input class="btn" type="submit" id="DeleteRecord" value="Delete">
