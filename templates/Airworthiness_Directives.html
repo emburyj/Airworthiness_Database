@@ -46,9 +46,11 @@
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
         <label>Directive</label>
-            <select name="ADID">
-                <option value=1></option>
-            </select>
+        <select name="ADID">
+            {% for ad in data %}
+                <option value="{{ ad.ad_id }}">{{ ad.ad_number }}</option>
+            {% endfor %}
+        </select>
         <label>AD Number</label>
         <input type="text" name="DirectiveNumber">
         <label>AD Description</label>
@@ -67,9 +69,11 @@
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
         <label>Directive</label>
-            <select name="ADID">
-                <option value=1></option>
-            </select>
+        <select name="ADID">
+            {% for ad in data %}
+                <option value="{{ ad.ad_id }}">{{ ad.ad_number }}</option>
+            {% endfor %}
+        </select>
 
     </fieldset>
     <input class="btn" type="submit" id="DeleteAD" value="Delete">
