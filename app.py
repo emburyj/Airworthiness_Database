@@ -40,7 +40,7 @@ def Airworthiness_Directives():
         # if user presses Add button for new model
 
         if request.form.get("NewAd"):
-            # get the inputs from text boxes
+            # get the inputs and selects
             ad_number_input = request.form["DirectiveNumber"]
             ad_description_input = request.form["DirectiveDescription"]
             required_maintenance_input = request.form["DirectiveDate"]
@@ -96,10 +96,10 @@ def Registered_Aircraft():
         # Create New Aircraft
         # if user presses Add button for new model
         if request.form.get("NewRegisteredAircraft"):
-            # get the inputs from text boxes
+            # get the inputs and selects
             n_number_input = request.form["NNumber"]
-            owner_id_select = request.form["AircraftOwner"]
-            model_id_select = request.form["AircraftModel"]
+            owner_id_select = str(request.form.get("AircraftOwner"))
+            model_id_select = str(request.form.get("AircraftModel"))
             status_input = request.form["CurrentStatus"]
             # create new aircraft query
             query = "INSERT INTO Registered_Aircraft (n_number_input, owner_id_select, model_id_select, status_input) VALUES (%s, %s, %s, %s)"
@@ -112,8 +112,8 @@ def Registered_Aircraft():
         if request.form.get("UpdateRegisteredAircraft"):
             aircraft_id_select = str(request.form.get("AircraftID"))
             n_number_input = request.form["NNumber"]
-            owner_id_select = request.form["AircraftOwner"]
-            model_id_select = request.form["AircraftModel"]
+            owner_id_select = str(request.form.get("AircraftOwner"))
+            model_id_select = str(request.form.get("AircraftModel"))
             status_input = request.form["CurrentStatus"]
             # update aircraft query
             query = "UPDATE Registered_Aircraft SET n_number = %s, owner_id = %s, model_id = %s, status = %s WHERE aircraft_id = %s"
@@ -151,7 +151,7 @@ def Aircraft_Models():
         # Create New Model
         # if user presses Add button for new model
         if request.form.get("NewAircraftModel"):
-            # get the inputs from text boxes
+            # get the inputs and selects
             manufacturer_name_input = request.form["AircraftManufacturer"]
             model_name_input = request.form["AircraftModel"]
             # create new model query
@@ -202,7 +202,7 @@ def Aircraft_Owners():
         # Create New Owner
         # if user presses Add button for new owner
         if request.form.get("NewOwner"):
-            # get the inputs from text boxes
+            # get the inputs and selects
             owner_name_input = request.form["OwnerName"]
             owner_email_input = request.form["OwnerEmail"]
 
@@ -255,7 +255,7 @@ def Maintenance_Records():
         # Create New MD
         # if user presses Add button for new model
         if request.form.get("NewRecord"):
-            # get the inputs from text boxes
+            # get the inputs and selects
             aircraft_id_select = str(request.form.get("NNumber"))
             date_input = request.form["RecordDate"]
             description_input = request.form["RecordDescription"]
@@ -310,9 +310,9 @@ def Models_Directives():
         # Create New MD
         # if user presses Add button for new model
         if request.form.get("NewMD"):
-            # get the inputs from text boxes
-            model_id_select = request.form["ModelID"]
-            ad_id_select = request.form["ADID"]
+            # get the inputs and selects
+            model_id_select = str(request.form.get("ModelID"))
+            ad_id_select = str(request.form.get("ADID"))
             # create new md query
             query = "INSERT INTO Models_Directives (model_id, ad_id) VALUES (%s, %s)"
             cur = mysql.connection.cursor()
@@ -323,8 +323,8 @@ def Models_Directives():
         # if user presses Update button
         if request.form.get("UpdateMD"):
             md_id_select = str(request.form.get("MDID"))
-            model_id_select = request.form["ModelID"]
-            ad_id_select = request.form["ADID"]
+            model_id_select = str(request.form.get("ModelID"))
+            ad_id_select = str(request.form.get("ADID"))
             # update md query
             query = "UPDATE Models_Directives SET model_id = %s, ad_id = %s WHERE md_id = %s"
             cur = mysql.connection.cursor()
