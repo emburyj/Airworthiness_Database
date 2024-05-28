@@ -86,7 +86,7 @@ def Registered_Aircraft():
     query = ("SELECT Registered_Aircraft.*, Aircraft_Owners.owner_name, Aircraft_Models.model_name FROM Registered_Aircraft"
              "INNER JOIN Aircraft_Owners on Aircraft_Owners.owner_id = Registered_Aircraft.owner_id"
              "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Registered_Aircraft = model_id"
-             "ORDER BY model_name")
+             "ORDER BY Registered_Aircraft.n_number")
     cur = mysql.connection.cursor()
     cur.execute(query)
     aircraft_data = cur.fetchall()
@@ -245,7 +245,7 @@ def Maintenance_Records():
     # display models query
     query = ("SELECT Maintenance_Records.*, Registered_Aircraft.n_number FROM Maintenance_Records"
              "INNER JOIN Registered_Aircraft ON Registered_Aircraft.aircraft_id = Maintenance_Records.aircraft_id"
-             "ORDER BY Registered_Aircraft")
+             "ORDER BY Registered_Aircraft.n_number")
     cur = mysql.connection.cursor()
     cur.execute(query)
     maintenance_data = cur.fetchall()
@@ -300,7 +300,7 @@ def Models_Directives():
     query = ("SELECT Models_Directives.*, Aircraft_Models.model_name, Airworthiness_Directives.ad_number FROM Models_Directives"
              "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id"
              "INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id"
-             "ORDER BY Models_Directives.md_id")
+             "ORDER BY Models_Directives.model_id")
     cur = mysql.connection.cursor()
     cur.execute(query)
     md_data = cur.fetchall()
