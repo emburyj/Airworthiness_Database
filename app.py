@@ -351,7 +351,7 @@ def Maintenance_Records():
 
     return render_template("Maintenance_Records.html", entities=entities, data=maintenance_data, page_name="Maintenance Records")
 
-@app.route('/Models_Directives')
+@app.route('/Models_Directives', methods=["POST", "GET"])
 def Models_Directives():
     entities = ["Models Directives ID", "Model Name", "Airworthiness Directive Number"]    # if request.method == "GET":
     # display models query
@@ -362,6 +362,16 @@ def Models_Directives():
     cur = mysql.connection.cursor()
     cur.execute(query)
     md_data = cur.fetchall()
+
+    query = "SELECT * FROM Aircraft_Models"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    model_data = cur.fetchall()
+
+    query = "SELECT * FROM Airworthiness_Directives"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    ad_data = cur.fetchall()
 
     if request.method == "POST":
 
@@ -402,7 +412,8 @@ def Models_Directives():
         # refresh page after post
         return redirect('/Models_Directives')
 
-    return render_template("Models_Directives.html", entities=entities, data=md_data, page_name="Models Impacted by Directives")
+    return render_template("Models_Directives.html", entities=entities,
+     data=md_data, models=model_data, ADs=ad_data, page_name="Models Impacted by Directives")
 
 
 # Listener

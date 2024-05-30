@@ -28,18 +28,18 @@
     <fieldset>
         <label>Model Name</label>
         <select name="ModelID">
-            {% for md in data %}
+            {% for md in models %}
                 <option value="{{ md.model_id }}">{{ md.model_name }}</option>
             {% endfor %}
         </select>
         <label>AD Number</label>
         <select name="ADID">
-            {% for md in data %}
+            {% for md in ADs %}
                 <option value="{{ md.ad_id }}">{{ md.ad_number }}</option>
             {% endfor %}
         </select>
     </fieldset>
-    <input class="btn" type="submit" id="NewMD" value="Add">
+    <input class="btn" type="submit" name="NewMD" id="NewMD" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -56,18 +56,18 @@
         </select>
         <label>Model Name</label>
         <select name="ModelID">
-            {% for md in data %}
+            {% for md in models %}
                 <option value="{{ md.model_id }}">{{ md.model_name }}</option>
             {% endfor %}
         </select>
         <label>AD Number</label>
         <select name="ADID">
-            {% for md in data %}
+            {% for md in ADs %}
                 <option value="{{ md.ad_id }}">{{ md.ad_number }}</option>
             {% endfor %}
         </select>
     </fieldset>
-    <input class="btn" type="submit" id="UpdateMD" value="Update">
+    <input class="btn" type="submit" name="UpdateMD" id="UpdateMD" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -83,7 +83,7 @@
             {% endfor %}
         </select>
     </fieldset>
-    <input class="btn" type="submit" id="DeleteMD" value="Delete">
+    <input class="btn" type="submit" name="DeleteMD" id="DeleteMD" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
