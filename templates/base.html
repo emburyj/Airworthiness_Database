@@ -30,6 +30,17 @@
         </section>
     <!-- Read Section -->
         <section>
+            <!-- Flash error message here -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class=flashes>
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
             {% block read %}
             <!-- Read table here -->
             {% endblock %}

@@ -29,14 +29,14 @@
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
         <label>AD Number</label>
-        <input type="text" name="DirectiveNumber">
+        <input type="text" name="DirectiveNumber" id="DirectiveNumber">
         <label>AD Description</label>
-        <textarea name="DirectiveDescription" rows="4" cols="50">
+        <textarea name="DirectiveDescription" id="DirectiveDescription" rows="4" cols="50">
         </textarea>
         <label>AD Maintenance Required Date</label>
-        <input type="date" name="DirectiveDate">
+        <input type="date" name="DirectiveDate" id="DirectiveDate">
     </fieldset>
-    <input class="btn" type="submit" id="NewAD" value="Add">
+    <input class="btn" type="submit" name="NewAD" id="NewAD" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -59,7 +59,7 @@
         <label>AD Maintenance Required Date</label>
         <input type="date" name="DirectiveDate">
     </fieldset>
-    <input class="btn" type="submit" id="UpdateAD" value="Update">
+    <input class="btn" type="submit" name="UpdateAD" id="UpdateAD" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}

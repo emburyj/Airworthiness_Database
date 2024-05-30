@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, redirect
+from flask import Flask, render_template, json, redirect, flash
 from flask_mysqldb import MySQL
 from flask import request
 from dotenv import load_dotenv, find_dotenv
@@ -13,7 +13,7 @@ app.config['MYSQL_USER'] = os.environ.get("340DBUSER")
 app.config['MYSQL_PASSWORD'] = os.environ.get("340DBPW")
 app.config['MYSQL_DB'] = os.environ.get("340DB")
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
-
+app.secret_key = os.environ.get("SECRET_KEY")
 
 mysql = MySQL(app)
 
@@ -25,7 +25,7 @@ def about():
 
     return render_template("about.html", page_name="Airworthiness Database")
 
-@app.route('/Airworthiness_Directives')
+@app.route('/Airworthiness_Directives', methods=["POST", "GET"])
 def Airworthiness_Directives():
     entities = ["Airworthiness Directive ID", "Airworthiness Directive Number", "Airworthiness Directive Description", "Maintenance Required Date"]
     # if request.method == "GET":
@@ -44,6 +44,12 @@ def Airworthiness_Directives():
             ad_number_input = request.form["DirectiveNumber"]
             ad_description_input = request.form["DirectiveDescription"]
             required_maintenance_input = request.form["DirectiveDate"]
+
+            # data validation
+            if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
+                flash('Error: Please provide valid input!')
+                return redirect('/Airworthiness_Directives')
+
             # create new AD query
             query = "INSERT INTO Airworthiness_Directives (ad_number, ad_description, maintenance_required_date) VALUES (%s, %s, %s)"
             cur = mysql.connection.cursor()
@@ -57,6 +63,12 @@ def Airworthiness_Directives():
             ad_number_input = request.form["DirectiveNumber"]
             ad_description_input = request.form["DirectiveDescription"]
             required_maintenance_input = request.form["DirectiveDate"]
+
+            # data validation
+            if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "mm/dd/yyyy":
+                flash('Error: Please provide valid input!')
+                return redirect('/Airworthiness_Directives')
+
             # update AD query
             query = "UPDATE Airworthiness_Directives SET ad_number = %s, ad_description = %s, maintenance_required_date WHERE ad_id = %s"
             cur = mysql.connection.cursor()
@@ -205,6 +217,10 @@ def Aircraft_Owners():
             # get the inputs and selects
             owner_name_input = request.form["OwnerName"]
             owner_email_input = request.form["OwnerEmail"]
+            # data validation
+            if owner_name_input == "" or owner_email_input == "":
+                flash('Error: Please provide valid input!')
+                return redirect('/Aircraft_Owners')
 
             # create new owner query
             query = "INSERT INTO Aircraft_Owners (owner_name, owner_email) VALUES (%s, %s)"
@@ -218,6 +234,12 @@ def Aircraft_Owners():
             dropdown_name = str(request.form.get("OwnerDropdownName"))
             owner_name_input = request.form["OwnerName"]
             owner_email_input = request.form["OwnerEmail"]
+
+            # data validation
+            if owner_name_input == "" or owner_email_input == "":
+                flash('Error: Please provide valid input!')
+                return redirect('/Aircraft_Owners')
+
             # update owner query
             query = "UPDATE Aircraft_Owners SET owner_name = %s, owner_email = %s WHERE owner_id = %s"
             cur = mysql.connection.cursor()
