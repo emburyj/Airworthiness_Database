@@ -49,6 +49,11 @@ def Airworthiness_Directives():
             if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Airworthiness_Directives')
+            check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = {ad_number_input}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
+                return redirect('/Airworthiness_Directives')
 
             # create new AD query
             query = "INSERT INTO Airworthiness_Directives (ad_number, ad_description, maintenance_required_date) VALUES (%s, %s, %s)"
@@ -67,6 +72,11 @@ def Airworthiness_Directives():
             # data validation
             if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
                 flash('Error: Please provide valid input!')
+                return redirect('/Airworthiness_Directives')
+            check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = {ad_number_input}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
                 return redirect('/Airworthiness_Directives')
 
             # update AD query
@@ -118,6 +128,12 @@ def Registered_Aircraft():
             if n_number_input == "" or status_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Registered_Aircraft')
+            check_query = f"SELECT 1 FROM Registered_Aircraft WHERE n_number = {n_number_input}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
+                return redirect('/Registered_Aircraft')
+
             # create new aircraft query
             query = "INSERT INTO Registered_Aircraft (n_number, owner_id, model_id, status) VALUES (%s, %s, %s, %s)"
             cur = mysql.connection.cursor()
@@ -136,6 +152,11 @@ def Registered_Aircraft():
             # data validation
             if n_number_input == "" or status_input == "":
                 flash('Error: Please provide valid input!')
+                return redirect('/Registered_Aircraft')
+            check_query = f"SELECT 1 FROM Registered_Aircraft WHERE n_number = {n_number_input}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
                 return redirect('/Registered_Aircraft')
 
             # update aircraft query
@@ -182,6 +203,11 @@ def Aircraft_Models():
             if manufacturer_name_input == "" or model_name_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Aircraft_Models')
+            check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = {model_name_input}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
+                return redirect('/Aircraft_Models')
 
             # create new model query
             query = "INSERT INTO Aircraft_Models (manufacturer_name, model_name) VALUES (%s, %s)"
@@ -199,6 +225,11 @@ def Aircraft_Models():
             # data validation
             if manufacturer_name_input == "" or model_name_input == "":
                 flash('Error: Please provide valid input!')
+                return redirect('/Aircraft_Models')
+            check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = {model_name_input}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
                 return redirect('/Aircraft_Models')
 
             # update model query
@@ -245,6 +276,11 @@ def Aircraft_Owners():
             if owner_name_input == "" or owner_email_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Aircraft_Owners')
+            check_query = f"SELECT 1 FROM Aircraft_Owners WHERE owner_name = {owner_name_input} AND owner_email = {owner_email_input}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
+                return redirect('/Aircraft_Owners')
 
             # create new owner query
             query = "INSERT INTO Aircraft_Owners (owner_name, owner_email) VALUES (%s, %s)"
@@ -262,6 +298,11 @@ def Aircraft_Owners():
             # data validation
             if owner_name_input == "" or owner_email_input == "":
                 flash('Error: Please provide valid input!')
+                return redirect('/Aircraft_Owners')
+            check_query = f"SELECT 1 FROM Aircraft_Owners WHERE owner_name = {owner_name_input} AND owner_email = {owner_email_input}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
                 return redirect('/Aircraft_Owners')
 
             # update owner query
@@ -310,6 +351,12 @@ def Maintenance_Records():
             if date_input == "" or description_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Maintenance_Records')
+            check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = {aircraft_id_select} AND "
+                           f"maintenance_date = {date_input} AND maintenance_description = {description_input}")
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
+                return redirect('/Maintenance_Records')
 
             # create new md query
             query = "INSERT INTO Maintenance_Records (aircraft_id, maintenance_date, maintenance_description) VALUES (%s, %s, %s)"
@@ -328,6 +375,12 @@ def Maintenance_Records():
             # data validation
             if date_input == "" or description_input == "":
                 flash('Error: Please provide valid input!')
+                return redirect('/Maintenance_Records')
+            check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = {aircraft_id_select} AND "
+                           f"maintenance_date = {date_input} AND maintenance_description = {description_input}")
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
                 return redirect('/Maintenance_Records')
 
             # update md query
@@ -381,6 +434,14 @@ def Models_Directives():
             # get the inputs and selects
             model_id_select = str(request.form.get("ModelID"))
             ad_id_select = str(request.form.get("ADID"))
+
+            # data validation
+            check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = {model_id_select} AND ad_id = {ad_id_select}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
+                return redirect('/Models_Directives')
+
             # create new md query
             query = "INSERT INTO Models_Directives (model_id, ad_id) VALUES (%s, %s)"
             cur = mysql.connection.cursor()
@@ -393,6 +454,14 @@ def Models_Directives():
             md_id_select = str(request.form.get("MDID"))
             model_id_select = str(request.form.get("ModelID"))
             ad_id_select = str(request.form.get("ADID"))
+
+            # data validation
+            check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = {model_id_select} AND ad_id = {ad_id_select}"
+            cur.execute(check_query)
+            if json.dumps(cur.fetchall()) == 1:
+                flash('Error: Please provide unique input!')
+                return redirect('/Models_Directives')
+
             # update md query
             query = "UPDATE Models_Directives SET model_id = %s, ad_id = %s WHERE md_id = %s"
             cur = mysql.connection.cursor()
