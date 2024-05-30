@@ -39,7 +39,7 @@
         <label>Maintenance Description</label>
         <input type="text" name="RecordDescription">
     </fieldset>
-    <input class="btn" type="submit" id="NewRecord" value="Add">
+    <input class="btn" type="submit" name="NewRecord" id="NewRecord" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -65,7 +65,7 @@
         <label>Maintenance Description</label>
         <input type="text" name="RecordDescription">
     </fieldset>
-    <input class="btn" type="submit" id="UpdateRecord" value="Update">
+    <input class="btn" type="submit" name="UpdateRecord" id="UpdateRecord" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -81,7 +81,7 @@
             {% endfor %}
         </select>
     </fieldset>
-    <input class="btn" type="submit" id="DeleteRecord" value="Delete">
+    <input class="btn" type="submit" name="DeleteRecord" id="DeleteRecord" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}

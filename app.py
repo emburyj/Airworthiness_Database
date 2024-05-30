@@ -285,7 +285,7 @@ def Aircraft_Owners():
 
     return render_template("Aircraft_Owners.html", entities=entities, data=owner_data, page_name="Aircraft Owners")
 
-@app.route('/Maintenance_Records')
+@app.route('/Maintenance_Records', methods=["POST", "GET"])
 def Maintenance_Records():
     entities = ["Maintenance ID", "N Number", "Maintenance Date", "Maintenance Description"]
     # display models query
@@ -305,6 +305,12 @@ def Maintenance_Records():
             aircraft_id_select = str(request.form.get("NNumber"))
             date_input = request.form["RecordDate"]
             description_input = request.form["RecordDescription"]
+
+            # data validation
+            if date_input == "" or description_input == "":
+                flash('Error: Please provide valid input!')
+                return redirect('/Maintenance_Records')
+
             # create new md query
             query = "INSERT INTO Maintenance_Records (aircraft_id, maintenance_date, maintenance_description) VALUES (%s, %s, %s)"
             cur = mysql.connection.cursor()
@@ -318,6 +324,12 @@ def Maintenance_Records():
             aircraft_id_select = str(request.form.get("NNumber"))
             date_input = request.form["RecordDate"]
             description_input = request.form["RecordDescription"]
+
+            # data validation
+            if date_input == "" or description_input == "":
+                flash('Error: Please provide valid input!')
+                return redirect('/Maintenance_Records')
+
             # update md query
             query = "UPDATE Maintenance_Records SET aircraft_id = %s, maintenance_date = %s, maintenance_description = %s WHERE maintenance_id = %s"
             cur = mysql.connection.cursor()
