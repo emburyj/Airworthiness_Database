@@ -8,8 +8,9 @@ SET foreign_key_checks=0;
 --DROP TABLE IF EXISTS Aircraft_Owners;
 CREATE TABLE Aircraft_Owners (
     owner_id int NOT NULL UNIQUE AUTO_INCREMENT,
-    owner_name varchar(50) UNIQUE NOT NULL,
+    owner_name varchar(50) NOT NULL,
     owner_email varchar(50) NOT NULL,
+    CONSTRAINT name_email UNIQUE (owner_name, owner_email)
     PRIMARY KEY (owner_id)
 );
 
