@@ -49,7 +49,7 @@ def Airworthiness_Directives():
             if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Airworthiness_Directives')
-            check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = {ad_number_input}"
+            check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = '{ad_number_input}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -73,7 +73,7 @@ def Airworthiness_Directives():
             if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Airworthiness_Directives')
-            check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = {ad_number_input}"
+            check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = '{ad_number_input}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -128,7 +128,7 @@ def Registered_Aircraft():
             if n_number_input == "" or status_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Registered_Aircraft')
-            check_query = f"SELECT 1 FROM Registered_Aircraft WHERE n_number = {n_number_input}"
+            check_query = f"SELECT 1 FROM Registered_Aircraft WHERE n_number = '{n_number_input}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -153,7 +153,7 @@ def Registered_Aircraft():
             if n_number_input == "" or status_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Registered_Aircraft')
-            check_query = f"SELECT 1 FROM Registered_Aircraft WHERE n_number = {n_number_input}"
+            check_query = f"SELECT 1 FROM Registered_Aircraft WHERE n_number = '{n_number_input}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -203,7 +203,7 @@ def Aircraft_Models():
             if manufacturer_name_input == "" or model_name_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Aircraft_Models')
-            check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = {model_name_input}"
+            check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = '{model_name_input}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -226,7 +226,7 @@ def Aircraft_Models():
             if manufacturer_name_input == "" or model_name_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Aircraft_Models')
-            check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = {model_name_input}"
+            check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = '{model_name_input}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -276,7 +276,7 @@ def Aircraft_Owners():
             if owner_name_input == "" or owner_email_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Aircraft_Owners')
-            check_query = f"SELECT 1 FROM Aircraft_Owners WHERE owner_name = {owner_name_input} AND owner_email = {owner_email_input}"
+            check_query = f"SELECT 1 FROM Aircraft_Owners WHERE owner_name = '{owner_name_input}' AND owner_email = '{owner_email_input}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -299,7 +299,7 @@ def Aircraft_Owners():
             if owner_name_input == "" or owner_email_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Aircraft_Owners')
-            check_query = f"SELECT 1 FROM Aircraft_Owners WHERE owner_name = {owner_name_input} AND owner_email = {owner_email_input}"
+            check_query = f"SELECT 1 FROM Aircraft_Owners WHERE owner_name = '{owner_name_input}' AND owner_email = '{owner_email_input}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -351,8 +351,8 @@ def Maintenance_Records():
             if date_input == "" or description_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Maintenance_Records')
-            check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = {aircraft_id_select} AND "
-                           f"maintenance_date = {date_input} AND maintenance_description = {description_input}")
+            check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = '{aircraft_id_select}' AND "
+                           f"maintenance_date = '{date_input}' AND maintenance_description = '{description_input}'")
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -376,8 +376,8 @@ def Maintenance_Records():
             if date_input == "" or description_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Maintenance_Records')
-            check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = {aircraft_id_select} AND "
-                           f"maintenance_date = {date_input} AND maintenance_description = {description_input}")
+            check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = '{aircraft_id_select}' AND "
+                           f"maintenance_date = '{date_input}' AND maintenance_description = '{description_input}'")
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -436,7 +436,7 @@ def Models_Directives():
             ad_id_select = str(request.form.get("ADID"))
 
             # data validation
-            check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = {model_id_select} AND ad_id = {ad_id_select}"
+            check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
@@ -456,7 +456,7 @@ def Models_Directives():
             ad_id_select = str(request.form.get("ADID"))
 
             # data validation
-            check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = {model_id_select} AND ad_id = {ad_id_select}"
+            check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
             cur.execute(check_query)
             if cur.fetchall():
                 flash('Error: Please provide unique input!')
