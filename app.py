@@ -39,7 +39,7 @@ def Airworthiness_Directives():
         # Create New AD
         # if user presses Add button for new model
 
-        if request.form.get("NewAd"):
+        if request.form.get("NewAD"):
             # get the inputs and selects
             ad_number_input = request.form["DirectiveNumber"]
             ad_description_input = request.form["DirectiveDescription"]
@@ -65,12 +65,12 @@ def Airworthiness_Directives():
             required_maintenance_input = request.form["DirectiveDate"]
 
             # data validation
-            if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "mm/dd/yyyy":
+            if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Airworthiness_Directives')
 
             # update AD query
-            query = "UPDATE Airworthiness_Directives SET ad_number = %s, ad_description = %s, maintenance_required_date WHERE ad_id = %s"
+            query = "UPDATE Airworthiness_Directives SET ad_number = %s, ad_description = %s, maintenance_required_date = %s WHERE ad_id = %s"
             cur = mysql.connection.cursor()
             cur.execute(query, (ad_number_input, ad_description_input, required_maintenance_input, ad_id_select))
             mysql.connection.commit()

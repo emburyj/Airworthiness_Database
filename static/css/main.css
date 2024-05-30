@@ -41,3 +41,8 @@
   section {
     padding: 15px;
   }
+
+/*Error message*/
+  .flashes {
+    color: red;
+  }
