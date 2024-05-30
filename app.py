@@ -51,7 +51,7 @@ def Airworthiness_Directives():
                 return redirect('/Airworthiness_Directives')
             check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = {ad_number_input}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Airworthiness_Directives')
 
@@ -75,7 +75,7 @@ def Airworthiness_Directives():
                 return redirect('/Airworthiness_Directives')
             check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = {ad_number_input}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Airworthiness_Directives')
 
@@ -130,7 +130,7 @@ def Registered_Aircraft():
                 return redirect('/Registered_Aircraft')
             check_query = f"SELECT 1 FROM Registered_Aircraft WHERE n_number = {n_number_input}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Registered_Aircraft')
 
@@ -155,7 +155,7 @@ def Registered_Aircraft():
                 return redirect('/Registered_Aircraft')
             check_query = f"SELECT 1 FROM Registered_Aircraft WHERE n_number = {n_number_input}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Registered_Aircraft')
 
@@ -205,7 +205,7 @@ def Aircraft_Models():
                 return redirect('/Aircraft_Models')
             check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = {model_name_input}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Aircraft_Models')
 
@@ -228,7 +228,7 @@ def Aircraft_Models():
                 return redirect('/Aircraft_Models')
             check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = {model_name_input}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Aircraft_Models')
 
@@ -278,7 +278,7 @@ def Aircraft_Owners():
                 return redirect('/Aircraft_Owners')
             check_query = f"SELECT 1 FROM Aircraft_Owners WHERE owner_name = {owner_name_input} AND owner_email = {owner_email_input}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Aircraft_Owners')
 
@@ -301,7 +301,7 @@ def Aircraft_Owners():
                 return redirect('/Aircraft_Owners')
             check_query = f"SELECT 1 FROM Aircraft_Owners WHERE owner_name = {owner_name_input} AND owner_email = {owner_email_input}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Aircraft_Owners')
 
@@ -354,7 +354,7 @@ def Maintenance_Records():
             check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = {aircraft_id_select} AND "
                            f"maintenance_date = {date_input} AND maintenance_description = {description_input}")
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Maintenance_Records')
 
@@ -379,7 +379,7 @@ def Maintenance_Records():
             check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = {aircraft_id_select} AND "
                            f"maintenance_date = {date_input} AND maintenance_description = {description_input}")
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Maintenance_Records')
 
@@ -438,7 +438,7 @@ def Models_Directives():
             # data validation
             check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = {model_id_select} AND ad_id = {ad_id_select}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Models_Directives')
 
@@ -458,7 +458,7 @@ def Models_Directives():
             # data validation
             check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = {model_id_select} AND ad_id = {ad_id_select}"
             cur.execute(check_query)
-            if json.dumps(cur.fetchall()) == 1:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Models_Directives')
 
