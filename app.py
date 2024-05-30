@@ -159,7 +159,7 @@ def Registered_Aircraft():
 
     return render_template("Registered_Aircraft.html",entities=entities, data=aircraft_data, page_name="Registered Aircraft")
 
-@app.route('/Aircraft_Models')
+@app.route('/Aircraft_Models', methods=["POST", "GET"])
 def Aircraft_Models():
     entities = ["Model ID", "Manufacturer Name", "Model Name"]
     # if request.method == "GET":
@@ -177,6 +177,12 @@ def Aircraft_Models():
             # get the inputs and selects
             manufacturer_name_input = request.form["AircraftManufacturer"]
             model_name_input = request.form["AircraftModel"]
+
+            # data validation
+            if manufacturer_name_input == "" or model_name_input == "":
+                flash('Error: Please provide valid input!')
+                return redirect('/Aircraft_Models')
+
             # create new model query
             query = "INSERT INTO Aircraft_Models (manufacturer_name, model_name) VALUES (%s, %s)"
             cur = mysql.connection.cursor()
@@ -189,6 +195,12 @@ def Aircraft_Models():
             model_id_select = str(request.form.get("ModelID"))
             manufacturer_name_input = request.form["AircraftManufacturer"]
             model_name_input = request.form["AircraftModel"]
+
+            # data validation
+            if manufacturer_name_input == "" or model_name_input == "":
+                flash('Error: Please provide valid input!')
+                return redirect('/Aircraft_Models')
+
             # update model query
             query = "UPDATE Aircraft_Models SET manufacturer_name = %s, model_name = %s WHERE model_id = %s"
             cur = mysql.connection.cursor()
@@ -228,6 +240,7 @@ def Aircraft_Owners():
             # get the inputs and selects
             owner_name_input = request.form["OwnerName"]
             owner_email_input = request.form["OwnerEmail"]
+
             # data validation
             if owner_name_input == "" or owner_email_input == "":
                 flash('Error: Please provide valid input!')

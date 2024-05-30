@@ -32,7 +32,7 @@
         <label>Model Name</label>
         <input type="text" name="AircraftModel">
     </fieldset>
-    <input class="btn" type="submit" id="NewAircraftModel" value="Add">
+    <input class="btn" type="submit" name="NewAircraftModel" id="NewAircraftModel" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -52,7 +52,7 @@
         <label>Model Name</label>
         <input type="text" name="AircraftModel">
     </fieldset>
-    <input class="btn" type="submit" id="UpdateAircraftModel" value="Update">
+    <input class="btn" type="submit" name="UpdateAircraftModel" id="UpdateAircraftModel" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -68,7 +68,7 @@
             {% endfor %}
         </select>
     </fieldset>
-    <input class="btn" type="submit" id="DeleteAircraftModel" value="Delete">
+    <input class="btn" type="submit" name="DeleteAircraftModel" id="DeleteAircraftModel" value="Delete">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
