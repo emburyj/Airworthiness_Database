@@ -31,7 +31,7 @@
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
         <label>N Number</label>
-        <input type="text" name="NNumber">
+        <input type="text" name="NNumber" id="NNumber">
         <label>Aircraft Owner</label>
         <select name="AircraftOwner">
             <option value=NULL> None</option>
@@ -46,9 +46,9 @@
             {% endfor %}
         </select>
         <label>Current Status</label>
-        <input type="text" name="CurrentStatus">
+        <input type="text" name="CurrentStatus" id="CurrentStatus">
     </fieldset>
-    <input class="btn" type="submit" id="NewRegisteredAircraft" value="Add">
+    <input class="btn" type="submit" name="NewRegisteredAircraft" id="NewRegisteredAircraft" value="Add">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
@@ -81,7 +81,7 @@
         <label>Current Status</label>
         <input type="text" name="CurrentStatus">
     </fieldset>
-    <input class="btn" type="submit" id="UpdateRegisteredAircraft" value="Update">
+    <input class="btn" type="submit" name="UpdateRegisteredAircraft" id="UpdateRegisteredAircraft" value="Update">
     <input class="btn" type="button" value="Cancel">
 </form>
 {% endblock %}
