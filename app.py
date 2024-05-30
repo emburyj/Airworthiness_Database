@@ -90,7 +90,7 @@ def Airworthiness_Directives():
 
     return render_template("Airworthiness_Directives.html", entities=entities, data=ad_data, page_name="Airworthiness Directives")
 
-@app.route('/Registered_Aircraft')
+@app.route('/Registered_Aircraft', methods=["POST", "GET"])
 def Registered_Aircraft():
     entities = ["Aircraft ID", "N Number", "Owner Name", "Model Name", "Current Status"]
     # if request.method == "GET":
@@ -113,8 +113,13 @@ def Registered_Aircraft():
             owner_id_select = str(request.form.get("AircraftOwner"))
             model_id_select = str(request.form.get("AircraftModel"))
             status_input = request.form["CurrentStatus"]
+
+            # data validation
+            if n_number_input == "" or status_input == "":
+                flash('Error: Please provide valid input!')
+                return redirect('/Registered_Aircraft')
             # create new aircraft query
-            query = "INSERT INTO Registered_Aircraft (n_number_input, owner_id_select, model_id_select, status_input) VALUES (%s, %s, %s, %s)"
+            query = "INSERT INTO Registered_Aircraft (n_number, owner_id, model_id, status) VALUES (%s, %s, %s, %s)"
             cur = mysql.connection.cursor()
             cur.execute(query, (n_number_input, owner_id_select, model_id_select, status_input))
             mysql.connection.commit()
@@ -127,6 +132,12 @@ def Registered_Aircraft():
             owner_id_select = str(request.form.get("AircraftOwner"))
             model_id_select = str(request.form.get("AircraftModel"))
             status_input = request.form["CurrentStatus"]
+
+            # data validation
+            if n_number_input == "" or status_input == "":
+                flash('Error: Please provide valid input!')
+                return redirect('/Registered_Aircraft')
+
             # update aircraft query
             query = "UPDATE Registered_Aircraft SET n_number = %s, owner_id = %s, model_id = %s, status = %s WHERE aircraft_id = %s"
             cur = mysql.connection.cursor()
