@@ -11,7 +11,7 @@
                 <th>{{ entity }}</th>
             {% endfor %}
         </tr>
-        {% for aircraft in data %}
+        {% for aircraft in data['aircraft_data'] %}
         <tr>
             <td>{{ aircraft.aircraft_id }}</td>
             <td>{{ aircraft.n_number }}</td>
@@ -35,14 +35,14 @@
         <label>Aircraft Owner</label>
         <select name="AircraftOwner">
             <option value=NULL> None</option>
-            {% for aircraft in data %}
-                <option value="{{ aircraft.owner_id }}">{{ aircraft.owner_name }}</option>
+            {% for owner in data['owner_data'] %}
+                <option value="{{ owner.owner_id }}">{{ owner.owner_name }}</option>
             {% endfor %}
         </select>
         <label>Aircraft Model</label>
         <select name="AircraftModel">
-            {% for aircraft in data %}
-                <option value="{{ aircraft.model_id }}">{{ aircraft.model_name }}</option>
+            {% for model in data['model_data'] %}
+                <option value="{{ model.model_id }}">{{ model.model_name }}</option>
             {% endfor %}
         </select>
         <label>Current Status</label>
@@ -59,7 +59,7 @@
     <fieldset>
         <label>Aircraft</label>
         <select name="AircraftID">
-            {% for aircraft in data %}
+            {% for aircraft in data['aircraft_data'] %}
                 <option value="{{ aircraft.aircraft_id }}">{{ aircraft.n_number }}</option>
             {% endfor %}
         </select>
@@ -68,14 +68,14 @@
         <label>Aircraft Owner</label>
         <select name="AircraftOwner">
             <option value=NULL> None</option>
-            {% for aircraft in data %}
-                <option value="{{ aircraft.owner_id }}">{{ aircraft.owner_name }}</option>
+            {% for owner in data['owner_data'] %}
+                <option value="{{ owner.owner_id }}">{{ owner.owner_name }}</option>
             {% endfor %}
         </select>
         <label>Aircraft Model</label>
         <select name="AircraftModel">
-            {% for aircraft in data %}
-                <option value="{{ aircraft.model_id }}">{{ aircraft.model_name }}</option>
+            {% for model in data['model_data'] %}
+                <option value="{{ model.model_id }}">{{ model.model_name }}</option>
             {% endfor %}
         </select>
         <label>Current Status</label>
@@ -92,7 +92,7 @@
     <fieldset>
         <label>Aircraft</label>
         <select name="AircraftID">
-            {% for aircraft in data %}
+            {% for aircraft in data['aircraft_data'] %}
                 <option value="{{ aircraft.aircraft_id }}">{{ aircraft.n_number }}</option>
             {% endfor %}
         </select>

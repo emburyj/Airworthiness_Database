@@ -18,16 +18,16 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mysql = MySQL(app)
 
 
-
 # Routes
 @app.route('/')
 def about():
-
     return render_template("about.html", page_name="Airworthiness Database")
+
 
 @app.route('/Airworthiness_Directives', methods=["POST", "GET"])
 def Airworthiness_Directives():
-    entities = ["Airworthiness Directive ID", "Airworthiness Directive Number", "Airworthiness Directive Description", "Maintenance Required Date"]
+    entities = ["Airworthiness Directive ID", "Airworthiness Directive Number", "Airworthiness Directive Description",
+                "Maintenance Required Date"]
     # if request.method == "GET":
     # display ADs query
     query = "SELECT * FROM Airworthiness_Directives ORDER BY ad_number"
@@ -98,20 +98,29 @@ def Airworthiness_Directives():
         # refresh page after post
         return redirect('/Airworthiness_Directives')
 
-    return render_template("Airworthiness_Directives.html", entities=entities, data=ad_data, page_name="Airworthiness Directives")
+    return render_template("Airworthiness_Directives.html", entities=entities, data=ad_data,
+                           page_name="Airworthiness Directives")
+
 
 @app.route('/Registered_Aircraft', methods=["POST", "GET"])
 def Registered_Aircraft():
     entities = ["Aircraft ID", "N Number", "Owner Name", "Model Name", "Current Status"]
     # if request.method == "GET":
     # display models query
-    query = ("SELECT Registered_Aircraft.*, Aircraft_Owners.owner_name, Aircraft_Models.model_name FROM Registered_Aircraft "
-             "INNER JOIN Aircraft_Owners on Aircraft_Owners.owner_id = Registered_Aircraft.owner_id "
-             "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Registered_Aircraft.model_id "
-             "ORDER BY Registered_Aircraft.n_number")
+    aircraft_query = (
+        "SELECT Registered_Aircraft.*, Aircraft_Owners.owner_name, Aircraft_Models.model_name FROM Registered_Aircraft "
+        "INNER JOIN Aircraft_Owners on Aircraft_Owners.owner_id = Registered_Aircraft.owner_id "
+        "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Registered_Aircraft.model_id "
+        "ORDER BY Registered_Aircraft.n_number")
+    owner_query = "SELECT * FROM Aircraft_Owners ORDER BY owner_name"
+    model_query = "SELECT * FROM Aircraft_Models ORDER BY model_name"
     cur = mysql.connection.cursor()
-    cur.execute(query)
+    cur.execute(aircraft_query)
     aircraft_data = cur.fetchall()
+    cur.execute(owner_query)
+    owner_data = cur.fetchall()
+    cur.execute(model_query)
+    model_data = cur.fetchall()
 
     if request.method == "POST":
 
@@ -178,7 +187,10 @@ def Registered_Aircraft():
         # refresh page after post
         return redirect('/Registered_Aircraft')
 
-    return render_template("Registered_Aircraft.html",entities=entities, data=aircraft_data, page_name="Registered Aircraft")
+    return render_template("Registered_Aircraft.html", entities=entities,
+                           data={'aircraft_data': aircraft_data, 'owner_data': owner_data, 'model_data': model_data},
+                           page_name="Registered Aircraft")
+
 
 @app.route('/Aircraft_Models', methods=["POST", "GET"])
 def Aircraft_Models():
@@ -253,6 +265,7 @@ def Aircraft_Models():
 
     return render_template("Aircraft_Models.html", entities=entities, data=model_data, page_name="Aircraft Models")
 
+
 @app.route('/Aircraft_Owners', methods=["POST", "GET"])
 def Aircraft_Owners():
     entities = ["Owner ID", "Owner Name", "Owner Email Address"]
@@ -262,7 +275,6 @@ def Aircraft_Owners():
     cur = mysql.connection.cursor()
     cur.execute(query1)
     owner_data = cur.fetchall()
-
 
     if request.method == "POST":
         # Create New Owner
@@ -325,6 +337,7 @@ def Aircraft_Owners():
         return redirect('/Aircraft_Owners')
 
     return render_template("Aircraft_Owners.html", entities=entities, data=owner_data, page_name="Aircraft Owners")
+
 
 @app.route('/Maintenance_Records', methods=["POST", "GET"])
 def Maintenance_Records():
@@ -402,16 +415,19 @@ def Maintenance_Records():
         # refresh page after post
         return redirect('/Maintenance_Records')
 
-    return render_template("Maintenance_Records.html", entities=entities, data=maintenance_data, page_name="Maintenance Records")
+    return render_template("Maintenance_Records.html", entities=entities, data=maintenance_data,
+                           page_name="Maintenance Records")
+
 
 @app.route('/Models_Directives', methods=["POST", "GET"])
 def Models_Directives():
-    entities = ["Models Directives ID", "Model Name", "Airworthiness Directive Number"]    # if request.method == "GET":
+    entities = ["Models Directives ID", "Model Name", "Airworthiness Directive Number"]  # if request.method == "GET":
     # display models query
-    query = ("SELECT Models_Directives.*, Aircraft_Models.model_name, Airworthiness_Directives.ad_number FROM Models_Directives "
-             "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id "
-             "INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id "
-             "ORDER BY Models_Directives.model_id")
+    query = (
+        "SELECT Models_Directives.*, Aircraft_Models.model_name, Airworthiness_Directives.ad_number FROM Models_Directives "
+        "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Models_Directives.model_id "
+        "INNER JOIN Airworthiness_Directives ON Airworthiness_Directives.ad_id = Models_Directives.ad_id "
+        "ORDER BY Models_Directives.model_id")
     cur = mysql.connection.cursor()
     cur.execute(query)
     md_data = cur.fetchall()
@@ -482,11 +498,10 @@ def Models_Directives():
         return redirect('/Models_Directives')
 
     return render_template("Models_Directives.html", entities=entities,
-     data=md_data, models=model_data, ADs=ad_data, page_name="Models Impacted by Directives")
+                           data=md_data, models=model_data, ADs=ad_data, page_name="Models Impacted by Directives")
 
 
 # Listener
 if __name__ == "__main__":
-
     #Start the app on port 3000, it will be different once hosted
     app.run(port=2468, debug=False)
