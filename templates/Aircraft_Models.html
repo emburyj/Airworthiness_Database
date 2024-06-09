@@ -26,6 +26,7 @@
 {% block create %}
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
+    <h6><i>(All fields required)</i></h6>
     <fieldset>
         <label>Manufacturer Name:</label>
         <input type="text" name="AircraftManufacturer">
@@ -40,6 +41,7 @@
 {% block update %}
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
+    <h6><i>(All fields required)</i></h6>
     <fieldset>
         <label>Model:</label>
         <select name="ModelID">

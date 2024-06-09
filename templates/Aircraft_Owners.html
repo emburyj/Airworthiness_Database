@@ -27,6 +27,7 @@
 
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
+    <h6><i>(All fields required)</i></h6>
     <fieldset>
         <label>Owner Name:</label>
         <input type="text" name="OwnerName" id="CreateOwnerName">
@@ -41,6 +42,7 @@
 {% block update %}
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
+    <h6><i>(All fields required)</i></h6>
     <fieldset>
         <label>Owner:</label>
         <select name="OwnerDropdownName">

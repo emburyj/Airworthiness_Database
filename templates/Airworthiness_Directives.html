@@ -27,6 +27,7 @@
 {% block create %}
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
+    <h6><i>(All fields required)</i></h6>
     <fieldset>
         <label>AD Number:</label>
         <input type="text" name="DirectiveNumber" id="DirectiveNumber">
@@ -44,6 +45,7 @@
 {% block update %}
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
+    <h6><i>(All fields required)</i></h6>
     <fieldset>
         <label>Directive:</label>
         <select name="ADID">

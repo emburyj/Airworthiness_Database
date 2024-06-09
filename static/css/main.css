@@ -97,6 +97,12 @@ textarea {
   margin-left: 5px;
 }
 
+h6 {
+  margin-top: 0px;
+  font-weight: normal;
+  color: red;
+}
+
 /*Error message*/
   .flashes {
     color: red;

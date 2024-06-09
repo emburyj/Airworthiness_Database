@@ -29,6 +29,7 @@
 
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
+    <h6><i>(All fields required)</i></h6>
     <fieldset>
         <label>N Number:</label>
         <input type="text" name="NNumber" id="NNumber">
@@ -56,6 +57,7 @@
 {% block update %}
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
+    <h6><i>(All fields required)</i></h6>
     <fieldset>
         <label>Aircraft:</label>
         <select name="AircraftID">
