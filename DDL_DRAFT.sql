@@ -1,7 +1,7 @@
-SET foreign_key_checks=0;
+-- Uncomment and update USE database_name; to use with an existing database.
+--USE database_name;
 
--- Uncomment and update USE [database name] to use with an existing database.
---USE [database name];
+SET foreign_key_checks=0;
 
 -- Create Aircraft_Owners table and populate with example data
 DROP TABLE IF EXISTS Aircraft_Owners;
