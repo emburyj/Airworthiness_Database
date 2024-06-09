@@ -32,7 +32,7 @@ def Maintenance_Records():
                            f"maintenance_date = '{date_input}' AND maintenance_description = '{description_input}'")
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Matching entry already exists! Please provide unique input!')
                 return redirect('/Maintenance_Records')
 
             # create new md query
@@ -57,7 +57,7 @@ def Maintenance_Records():
                            f"maintenance_date = '{date_input}' AND maintenance_description = '{description_input}'")
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Data unchanged! Please provide new input.')
                 return redirect('/Maintenance_Records')
 
             # update md query

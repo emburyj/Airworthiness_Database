@@ -41,7 +41,7 @@ def Registered_Aircraft():
             check_query = f"SELECT * FROM Registered_Aircraft WHERE n_number = '{n_number_input}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Matching entry already exists! Please provide unique input!')
                 return redirect('/Registered_Aircraft')
 
             # create new aircraft query
@@ -66,7 +66,7 @@ def Registered_Aircraft():
             check_query = f"SELECT * FROM Registered_Aircraft WHERE n_number = '{n_number_input}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Data unchanged! Please provide new input.')
                 return redirect('/Registered_Aircraft')
 
             # update aircraft query

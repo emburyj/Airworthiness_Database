@@ -29,7 +29,7 @@ def Aircraft_Models():
             check_query = f"SELECT * FROM Aircraft_Models WHERE model_name = '{model_name_input}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Matching entry already exists! Please provide unique input!')
                 return redirect('/Aircraft_Models')
 
             # create new model query
@@ -52,7 +52,7 @@ def Aircraft_Models():
             check_query = f"SELECT * FROM Aircraft_Models WHERE model_name = '{model_name_input}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Data unchanged! Please provide new input.')
                 return redirect('/Aircraft_Models')
 
             # update model query

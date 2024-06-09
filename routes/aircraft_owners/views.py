@@ -28,7 +28,7 @@ def Aircraft_Owners():
             check_query = f"SELECT * FROM Aircraft_Owners WHERE owner_name = '{owner_name_input}' AND owner_email = '{owner_email_input}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Matching entry already exists! Please provide unique input!')
                 return redirect('/Aircraft_Owners')
 
             # create new owner query
@@ -51,7 +51,7 @@ def Aircraft_Owners():
             check_query = f"SELECT * FROM Aircraft_Owners WHERE owner_name = '{owner_name_input}' AND owner_email = '{owner_email_input}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Data unchanged! Please provide new input.')
                 return redirect('/Aircraft_Owners')
 
             # update owner query

@@ -31,7 +31,7 @@ def Airworthiness_Directives():
             check_query = f"SELECT * FROM Airworthiness_Directives WHERE ad_number = '{ad_number_input}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Matching entry already exists! Please provide unique input!')
                 return redirect('/Airworthiness_Directives')
 
             # create new AD query
@@ -55,7 +55,7 @@ def Airworthiness_Directives():
             check_query = f"SELECT * FROM Airworthiness_Directives WHERE ad_number = '{ad_number_input}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Data unchanged! Please provide new input.')
                 return redirect('/Airworthiness_Directives')
 
             # update AD query

@@ -39,7 +39,7 @@ def Models_Directives():
             check_query = f"SELECT * FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Matching entry already exists! Please provide unique input!')
                 return redirect('/Models_Directives')
 
             # create new md query
@@ -59,7 +59,7 @@ def Models_Directives():
             check_query = f"SELECT * FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Please provide unique input!')
+                flash('Error: Data unchanged! Please provide new input.')
                 return redirect('/Models_Directives')
 
             # update md query
