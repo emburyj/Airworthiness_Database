@@ -39,7 +39,7 @@ def Models_Directives():
             check_query = f"SELECT * FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Matching entry already exists! Please provide unique input!')
+                flash('Error: Identical entry already exists! Please provide unique input.')
                 return redirect('/Models_Directives')
 
             # create new md query
@@ -56,10 +56,10 @@ def Models_Directives():
             ad_id_select = str(request.form.get("ADID"))
 
             # data validation
-            check_query = f"SELECT * FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
+            check_query = f"SELECT * FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}' AND md_id != {md_id_select}"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Data unchanged! Please provide new input.')
+                flash('Error: Identical entry already exists! Please provide unique input.')
                 return redirect('/Models_Directives')
 
             # update md query

@@ -10,7 +10,7 @@ def Registered_Aircraft():
     # display models query
     aircraft_query = (
         "SELECT Registered_Aircraft.*, Aircraft_Owners.owner_name, Aircraft_Models.model_name FROM Registered_Aircraft "
-        "INNER JOIN Aircraft_Owners on Aircraft_Owners.owner_id = Registered_Aircraft.owner_id "
+        "LEFT JOIN Aircraft_Owners on Aircraft_Owners.owner_id = Registered_Aircraft.owner_id "
         "INNER JOIN Aircraft_Models ON Aircraft_Models.model_id = Registered_Aircraft.model_id "
         "ORDER BY Registered_Aircraft.n_number")
     owner_query = "SELECT * FROM Aircraft_Owners ORDER BY owner_name"
@@ -41,13 +41,17 @@ def Registered_Aircraft():
             check_query = f"SELECT * FROM Registered_Aircraft WHERE n_number = '{n_number_input}'"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Matching entry already exists! Please provide unique input!')
+                flash('Error: N Number already exists! Please provide unique input.')
                 return redirect('/Registered_Aircraft')
 
             # create new aircraft query
-            query = "INSERT INTO Registered_Aircraft (n_number, owner_id, model_id, status) VALUES (%s, %s, %s, %s)"
             cur = mysql.connection.cursor()
-            cur.execute(query, (n_number_input, owner_id_select, model_id_select, status_input))
+            if owner_id_select != "NULL":
+                query = "INSERT INTO Registered_Aircraft (n_number, owner_id, model_id, status) VALUES (%s, %s, %s, %s)"
+                cur.execute(query, (n_number_input, owner_id_select, model_id_select, status_input))
+            else:
+                query = "INSERT INTO Registered_Aircraft (n_number, model_id, status) VALUES (%s, %s, %s)"
+                cur.execute(query, (n_number_input, model_id_select, status_input))
             mysql.connection.commit()
 
         # Update Aircraft
@@ -63,16 +67,20 @@ def Registered_Aircraft():
             if n_number_input == "" or status_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Registered_Aircraft')
-            check_query = f"SELECT * FROM Registered_Aircraft WHERE n_number = '{n_number_input}'"
+            check_query = f"SELECT * FROM Registered_Aircraft WHERE n_number = '{n_number_input}' AND aircraft_id != {aircraft_id_select}"
             cur.execute(check_query)
             if cur.fetchall():
-                flash('Error: Data unchanged! Please provide new input.')
+                flash('Error: N Number already exists! Please provide unique input.')
                 return redirect('/Registered_Aircraft')
 
             # update aircraft query
-            query = "UPDATE Registered_Aircraft SET n_number = %s, owner_id = %s, model_id = %s, status = %s WHERE aircraft_id = %s"
             cur = mysql.connection.cursor()
-            cur.execute(query, (n_number_input, owner_id_select, model_id_select, status_input, aircraft_id_select))
+            if owner_id_select != 'NULL':
+                query = "UPDATE Registered_Aircraft SET n_number = %s, owner_id = %s, model_id = %s, status = %s WHERE aircraft_id = %s"
+                cur.execute(query, (n_number_input, owner_id_select, model_id_select, status_input, aircraft_id_select))
+            else:
+                query = "UPDATE Registered_Aircraft SET n_number = %s, owner_id = NULL, model_id = %s, status = %s WHERE aircraft_id = %s"
+                cur.execute(query, (n_number_input, model_id_select, status_input, aircraft_id_select))
             mysql.connection.commit()
 
         # Delete Aircraft
