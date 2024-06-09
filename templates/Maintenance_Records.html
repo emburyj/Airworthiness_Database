@@ -28,15 +28,15 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Aircraft N Number</label>
+        <label>Aircraft N Number:</label>
         <select name="NNumber">
             {% for record in data %}
                 <option value="{{ record.aircraft_id }}">{{ record.n_number }}</option>
             {% endfor %}
         </select>
-        <label>Maintenance Date</label>
+        <label>Maintenance Date:</label>
         <input type="date" name="RecordDate">
-        <label>Maintenance Description</label>
+        <label>Maintenance Description:</label>
         <input type="text" name="RecordDescription">
     </fieldset>
     <input class="btn" type="submit" name="NewRecord" id="NewRecord" value="Add">
@@ -48,21 +48,21 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Maintenance Record ID</label>
+        <label>Maintenance Record ID:</label>
         <select name="RecordID">
             {% for record in data %}
                 <option value="{{ record.maintenance_id }}">{{ record.n_number }} {{ record.maintenance_date }}</option>
             {% endfor %}
         </select>
-        <label>Aircraft N Number</label>
+        <label>Aircraft N Number:</label>
         <select name="NNumber">
             {% for record in data %}
                 <option value="{{ record.aircraft_id }}">{{ record.n_number }}</option>
             {% endfor %}
         </select>
-        <label>Maintenance Date</label>
+        <label>Maintenance Date:</label>
         <input type="date" name="RecordDate">
-        <label>Maintenance Description</label>
+        <label>Maintenance Description:</label>
         <input type="text" name="RecordDescription">
     </fieldset>
     <input class="btn" type="submit" name="UpdateRecord" id="UpdateRecord" value="Update">
@@ -74,7 +74,7 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Maintenance Record ID</label>
+        <label>Maintenance Record ID:</label>
         <select name="RecordID">
             {% for record in data %}
                 <option value="{{ record.maintenance_id }}">{{ record.n_number }} {{ record.maintenance_date }}</option>

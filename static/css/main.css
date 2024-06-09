@@ -64,6 +64,37 @@
 form {
   background-color: #ccebf5;
   font-family: "Roboto", sans-serif;
+  justify-content: center;
+  border: 1px solid;
+}
+fieldset {
+  display: flex;
+  padding: 15px;
+  justify-content: left;
+  border: none;
+  align-items: center;
+}
+
+label {
+  margin-left: 50px;
+}
+
+input, select {
+  width: 200px;
+  height: 20px;
+  margin-left: 5px;
+}
+
+input.btn {
+  width: 100px;
+  height: 30px;
+  background-color: white;
+  font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+}
+
+textarea {
+  margin-left: 5px;
 }
 
 /*Error message*/

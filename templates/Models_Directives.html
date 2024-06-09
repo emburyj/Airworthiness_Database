@@ -26,13 +26,13 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Model Name</label>
+        <label>Model Name:</label>
         <select name="ModelID">
             {% for md in models %}
                 <option value="{{ md.model_id }}">{{ md.model_name }}</option>
             {% endfor %}
         </select>
-        <label>AD Number</label>
+        <label>AD Number:</label>
         <select name="ADID">
             {% for md in ADs %}
                 <option value="{{ md.ad_id }}">{{ md.ad_number }}</option>
@@ -48,19 +48,19 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Relationship</label>
+        <label>Relationship:</label>
         <select name="MDID">
             {% for md in data %}
                 <option value="{{ md.md_id }}">{{ md.model_name }} {{ md.ad_number }}</option>
             {% endfor %}
         </select>
-        <label>Model Name</label>
+        <label>Model Name:</label>
         <select name="ModelID">
             {% for md in models %}
                 <option value="{{ md.model_id }}">{{ md.model_name }}</option>
             {% endfor %}
         </select>
-        <label>AD Number</label>
+        <label>AD Number:</label>
         <select name="ADID">
             {% for md in ADs %}
                 <option value="{{ md.ad_id }}">{{ md.ad_number }}</option>
@@ -76,7 +76,7 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Relationship</label>
+        <label>Relationship:</label>
         <select name="MDID">
             {% for md in data %}
                 <option value="{{ md.md_id }}">{{ md.model_name }} {{ md.ad_number }}</option>

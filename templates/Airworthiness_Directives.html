@@ -28,12 +28,12 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label>AD Number</label>
+        <label>AD Number:</label>
         <input type="text" name="DirectiveNumber" id="DirectiveNumber">
-        <label>AD Description</label>
+        <label>AD Description:</label>
         <textarea name="DirectiveDescription" id="DirectiveDescription" rows="4" cols="50">
         </textarea>
-        <label>AD Maintenance Required Date</label>
+        <label>AD Maintenance Required Date:</label>
         <input type="date" name="DirectiveDate" id="DirectiveDate">
     </fieldset>
     <input class="btn" type="submit" name="NewAD" id="NewAD" value="Add">
@@ -45,18 +45,18 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Directive</label>
+        <label>Directive:</label>
         <select name="ADID">
             {% for ad in data %}
                 <option value="{{ ad.ad_id }}">{{ ad.ad_number }}</option>
             {% endfor %}
         </select>
-        <label>AD Number</label>
+        <label>AD Number:</label>
         <input type="text" name="DirectiveNumber">
-        <label>AD Description</label>
+        <label>AD Description:</label>
         <textarea name="DirectiveDescription" rows="4" cols="50">
         </textarea>
-        <label>AD Maintenance Required Date</label>
+        <label>AD Maintenance Required Date:</label>
         <input type="date" name="DirectiveDate">
     </fieldset>
     <input class="btn" type="submit" name="UpdateAD" id="UpdateAD" value="Update">
@@ -68,7 +68,7 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Directive</label>
+        <label>Directive:</label>
         <select name="ADID">
             {% for ad in data %}
                 <option value="{{ ad.ad_id }}">{{ ad.ad_number }}</option>

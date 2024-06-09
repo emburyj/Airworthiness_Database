@@ -30,22 +30,22 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label>N Number</label>
+        <label>N Number:</label>
         <input type="text" name="NNumber" id="NNumber">
-        <label>Aircraft Owner</label>
+        <label>Aircraft Owner:</label>
         <select name="AircraftOwner">
             <option value=NULL> None</option>
             {% for owner in data['owner_data'] %}
                 <option value="{{ owner.owner_id }}">{{ owner.owner_name }}</option>
             {% endfor %}
         </select>
-        <label>Aircraft Model</label>
+        <label>Aircraft Model:</label>
         <select name="AircraftModel">
             {% for model in data['model_data'] %}
                 <option value="{{ model.model_id }}">{{ model.model_name }}</option>
             {% endfor %}
         </select>
-        <label>Current Status</label>
+        <label>Current Status:</label>
         <input type="text" name="CurrentStatus" id="CurrentStatus">
     </fieldset>
     <input class="btn" type="submit" name="NewRegisteredAircraft" id="NewRegisteredAircraft" value="Add">
@@ -57,28 +57,28 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Aircraft</label>
+        <label>Aircraft:</label>
         <select name="AircraftID">
             {% for aircraft in data['aircraft_data'] %}
                 <option value="{{ aircraft.aircraft_id }}">{{ aircraft.n_number }}</option>
             {% endfor %}
         </select>
-        <label>N Number</label>
+        <label>N Number:</label>
         <input type="text" name="NNumber">
-        <label>Aircraft Owner</label>
+        <label>Aircraft Owner:</label>
         <select name="AircraftOwner">
             <option value=NULL> None</option>
             {% for owner in data['owner_data'] %}
                 <option value="{{ owner.owner_id }}">{{ owner.owner_name }}</option>
             {% endfor %}
         </select>
-        <label>Aircraft Model</label>
+        <label>Aircraft Model:</label>
         <select name="AircraftModel">
             {% for model in data['model_data'] %}
                 <option value="{{ model.model_id }}">{{ model.model_name }}</option>
             {% endfor %}
         </select>
-        <label>Current Status</label>
+        <label>Current Status:</label>
         <input type="text" name="CurrentStatus">
     </fieldset>
     <input class="btn" type="submit" name="UpdateRegisteredAircraft" id="UpdateRegisteredAircraft" value="Update">
@@ -90,7 +90,7 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Aircraft</label>
+        <label>Aircraft:</label>
         <select name="AircraftID">
             {% for aircraft in data['aircraft_data'] %}
                 <option value="{{ aircraft.aircraft_id }}">{{ aircraft.n_number }}</option>

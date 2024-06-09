@@ -27,9 +27,9 @@
 <form method="POST">
     <legend><strong>Add {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Manufacturer Name</label>
+        <label>Manufacturer Name:</label>
         <input type="text" name="AircraftManufacturer">
-        <label>Model Name</label>
+        <label>Model Name:</label>
         <input type="text" name="AircraftModel">
     </fieldset>
     <input class="btn" type="submit" name="NewAircraftModel" id="NewAircraftModel" value="Add">
@@ -41,15 +41,15 @@
 <form method="POST">
     <legend><strong>Update {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Model</label>
+        <label>Model:</label>
         <select name="ModelID">
             {% for model in data %}
                 <option value="{{ model.model_id }}">{{ model.model_name }}</option>
             {% endfor %}
         </select>
-        <label>Manufacturer Name</label>
+        <label>Manufacturer Name:</label>
         <input type="text" name="AircraftManufacturer">
-        <label>Model Name</label>
+        <label>Model Name:</label>
         <input type="text" name="AircraftModel">
     </fieldset>
     <input class="btn" type="submit" name="UpdateAircraftModel" id="UpdateAircraftModel" value="Update">
@@ -61,7 +61,7 @@
 <form method="POST">
     <legend><strong>Delete {{ page_name }}</strong></legend>
     <fieldset>
-        <label>Model</label>
+        <label>Model:</label>
         <select name="ModelID">
             {% for model in data %}
                 <option value="{{ model.model_id }}">{{ model.model_name }}</option>
