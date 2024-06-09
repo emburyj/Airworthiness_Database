@@ -28,9 +28,9 @@ def Airworthiness_Directives():
             if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Airworthiness_Directives')
-            check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = '{ad_number_input}'"
+            check_query = f"SELECT * FROM Airworthiness_Directives WHERE ad_number = '{ad_number_input}'"
             cur.execute(check_query)
-            if cur.fetchall() is not False:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Airworthiness_Directives')
 
@@ -52,9 +52,9 @@ def Airworthiness_Directives():
             if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Airworthiness_Directives')
-            check_query = f"SELECT 1 FROM Airworthiness_Directives WHERE ad_number = '{ad_number_input}'"
+            check_query = f"SELECT * FROM Airworthiness_Directives WHERE ad_number = '{ad_number_input}'"
             cur.execute(check_query)
-            if cur.fetchall() is not False:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Airworthiness_Directives')
 

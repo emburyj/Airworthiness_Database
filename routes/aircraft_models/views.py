@@ -26,9 +26,9 @@ def Aircraft_Models():
             if manufacturer_name_input == "" or model_name_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Aircraft_Models')
-            check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = '{model_name_input}'"
+            check_query = f"SELECT * FROM Aircraft_Models WHERE model_name = '{model_name_input}'"
             cur.execute(check_query)
-            if cur.fetchall() is not False:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Aircraft_Models')
 
@@ -49,9 +49,9 @@ def Aircraft_Models():
             if manufacturer_name_input == "" or model_name_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Aircraft_Models')
-            check_query = f"SELECT 1 FROM Aircraft_Models WHERE model_name = '{model_name_input}'"
+            check_query = f"SELECT * FROM Aircraft_Models WHERE model_name = '{model_name_input}'"
             cur.execute(check_query)
-            if cur.fetchall() is not False:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Aircraft_Models')
 

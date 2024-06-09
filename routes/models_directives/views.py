@@ -36,9 +36,9 @@ def Models_Directives():
             ad_id_select = str(request.form.get("ADID"))
 
             # data validation
-            check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
+            check_query = f"SELECT * FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
             cur.execute(check_query)
-            if cur.fetchall() is not False:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Models_Directives')
 
@@ -56,9 +56,9 @@ def Models_Directives():
             ad_id_select = str(request.form.get("ADID"))
 
             # data validation
-            check_query = f"SELECT 1 FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
+            check_query = f"SELECT * FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
             cur.execute(check_query)
-            if cur.fetchall() is not False:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Models_Directives')
 

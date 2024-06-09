@@ -28,10 +28,10 @@ def Maintenance_Records():
             if date_input == "" or description_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Maintenance_Records')
-            check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = '{aircraft_id_select}' AND "
+            check_query = (f"SELECT * FROM Maintenance_Records WHERE aircraft_id = '{aircraft_id_select}' AND "
                            f"maintenance_date = '{date_input}' AND maintenance_description = '{description_input}'")
             cur.execute(check_query)
-            if cur.fetchall() is not False:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Maintenance_Records')
 
@@ -53,10 +53,10 @@ def Maintenance_Records():
             if date_input == "" or description_input == "":
                 flash('Error: Please provide valid input!')
                 return redirect('/Maintenance_Records')
-            check_query = (f"SELECT 1 FROM Maintenance_Records WHERE aircraft_id = '{aircraft_id_select}' AND "
+            check_query = (f"SELECT * FROM Maintenance_Records WHERE aircraft_id = '{aircraft_id_select}' AND "
                            f"maintenance_date = '{date_input}' AND maintenance_description = '{description_input}'")
             cur.execute(check_query)
-            if cur.fetchall() is not False:
+            if cur.fetchall():
                 flash('Error: Please provide unique input!')
                 return redirect('/Maintenance_Records')
 
