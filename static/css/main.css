@@ -1,9 +1,11 @@
 /*Header*/
   header {
-    background-color: gray;
+    background-color: #062c4c;
+    color: #f3f8fc;
     border-top:3px solid black;
     border-bottom:3px solid black;
     text-align: center;
+    font-family: "Roboto", sans-serif;
   }
 /*Nav Bar*/
 
@@ -13,36 +15,59 @@
     padding: 15px;
     display: flex;
     justify-content: center;
-  }
+     }
 
   nav a {
     text-align: center;
-    font-family: black;
     background-color: white;
     text-decoration: none;
     color: black;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
     border-radius: 10px;
     border:2px solid black;
     margin: 1% 1%;
     padding: 13px;
     width: 130px;
+    justify-content: center;
+
   }
   /*  ----- Table ----- */
-
-  th, td {
+  th {
+    background-color: #062c4c;
+    color: #f3f8fc;
     justify-content: center;
     width: 1%;
     margin: 0 auto;
     border: 1px solid;
     border-color: black;
+    font-family: "Roboto", sans-serif;
+  }
+
+  td {
+    justify-content: center;
+    width: 1%;
+    margin: 0 auto;
+    border: 1px solid;
+    border-color: black;
+    font-family: "Roboto", sans-serif;
   }
 
   /*Sections*/
   section {
     padding: 15px;
+    font-family: "Roboto", sans-serif;
   }
+
+/*Forms*/
+
+form {
+  background-color: #ccebf5;
+  font-family: "Roboto", sans-serif;
+}
 
 /*Error message*/
   .flashes {
     color: red;
+    font-family: "Roboto", sans-serif;
   }
