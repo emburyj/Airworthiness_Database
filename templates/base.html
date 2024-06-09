@@ -6,7 +6,6 @@
     <title>{{ page_name }}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='static/css/main.css'>
-    <script src='main.js'></script>
 </head>
 <body>
     <header>
@@ -15,12 +14,12 @@
         </h1>
         <nav>
             <a href="{{ url_for('about')}}">About</a>
-            <a href="{{ url_for('Airworthiness_Directives')}}">Airworthiness Directives</a>
-            <a href="{{ url_for('Registered_Aircraft')}}">Registered Aircraft</a>
-            <a href="{{ url_for('Aircraft_Models')}}">Aircraft Models</a>
-            <a href="{{ url_for('Aircraft_Owners')}}">Aircraft Owners</a>
-            <a href="{{ url_for('Maintenance_Records')}}">Maintenance Records</a>
-            <a href="{{ url_for('Models_Directives')}}">Models Impacted by Directives</a>
+            <a href="{{ url_for('airworthiness_directives_blueprint.Airworthiness_Directives')}}">Airworthiness Directives</a>
+            <a href="{{ url_for('registered_aircraft_blueprint.Registered_Aircraft')}}">Registered Aircraft</a>
+            <a href="{{ url_for('aircraft_models_blueprint.Aircraft_Models')}}">Aircraft Models</a>
+            <a href="{{ url_for('aircraft_owners_blueprint.Aircraft_Owners')}}">Aircraft Owners</a>
+            <a href="{{ url_for('maintenance_records_blueprint.Maintenance_Records')}}">Maintenance Records</a>
+            <a href="{{ url_for('models_directives_blueprint.Models_Directives')}}">Models Impacted by Directives</a>
         </nav>
     </header>
     <main>
