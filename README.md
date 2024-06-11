@@ -35,7 +35,7 @@ The Airworthiness Database is a web application to enable tracking the records o
 
 2. View the application in your browser by navigating to the address:
     ```
-    http://localhost:3000/
+    http://localhost:2468/
     ```
 
 ## Citations
