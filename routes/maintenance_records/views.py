@@ -20,9 +20,9 @@ def Maintenance_Records():
         # if user presses Add button for new model
         if request.form.get("NewRecord"):
             # get the inputs and selects
-            aircraft_id_select = str(request.form.get("NNumber"))
-            date_input = request.form["RecordDate"]
-            description_input = request.form["RecordDescription"]
+            aircraft_id_select = str(request.form.get("NNumber")).strip()
+            date_input = request.form["RecordDate"].strip()
+            description_input = request.form["RecordDescription"].strip()
 
             # data validation
             if date_input == "" or description_input == "":
@@ -44,10 +44,10 @@ def Maintenance_Records():
         # Update MD
         # if user presses Update button
         if request.form.get("UpdateRecord"):
-            maintenance_id_select = str(request.form.get("RecordID"))
-            aircraft_id_select = str(request.form.get("NNumber"))
-            date_input = request.form["RecordDate"]
-            description_input = request.form["RecordDescription"]
+            maintenance_id_select = str(request.form.get("RecordID")).strip()
+            aircraft_id_select = str(request.form.get("NNumber")).strip()
+            date_input = request.form["RecordDate"].strip()
+            description_input = request.form["RecordDescription"].strip()
 
             # data validation
             if date_input == "" or description_input == "":
@@ -70,7 +70,7 @@ def Maintenance_Records():
         # Delete MD
         # if user presses Delete button
         if request.form.get("DeleteRecord"):
-            maintenance_id_select = str(request.form.get("RecordID"))
+            maintenance_id_select = str(request.form.get("RecordID")).strip()
             # delete md query
             query = f"DELETE FROM Maintenance_Records WHERE maintenance_id = '{maintenance_id_select}'"
             cur = mysql.connection.cursor()
