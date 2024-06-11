@@ -18,8 +18,8 @@ def Aircraft_Owners():
         # if user presses Add button for new owner
         if request.form.get("NewOwner"):
             # get the inputs and selects
-            owner_name_input = request.form["OwnerName"]
-            owner_email_input = request.form["OwnerEmail"]
+            owner_name_input = request.form["OwnerName"].strip()
+            owner_email_input = request.form["OwnerEmail"].strip()
 
             # data validation
             if owner_name_input == "" or owner_email_input == "":
@@ -40,9 +40,9 @@ def Aircraft_Owners():
         # Update Owner
         # if user presses Update button
         if request.form.get("UpdateOwner"):
-            dropdown_name = str(request.form.get("OwnerDropdownName"))
-            owner_name_input = request.form["OwnerName"]
-            owner_email_input = request.form["OwnerEmail"]
+            dropdown_name = str(request.form.get("OwnerDropdownName")).strip()
+            owner_name_input = request.form["OwnerName"].strip()
+            owner_email_input = request.form["OwnerEmail"].strip()
 
             # data validation
             if owner_name_input == "" or owner_email_input == "":
@@ -64,7 +64,7 @@ def Aircraft_Owners():
         # Delete Owner
         # if user presses Delete button
         if request.form.get("DeleteOwner"):
-            dropdown_name = str(request.form.get("OwnerDropdownName"))
+            dropdown_name = str(request.form.get("OwnerDropdownName")).strip()
             # delete owner query
             query = f"DELETE FROM Aircraft_Owners WHERE owner_id = '{dropdown_name}'"
             cur = mysql.connection.cursor()

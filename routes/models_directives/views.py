@@ -32,8 +32,8 @@ def Models_Directives():
         # if user presses Add button for new model
         if request.form.get("NewMD"):
             # get the inputs and selects
-            model_id_select = str(request.form.get("ModelID"))
-            ad_id_select = str(request.form.get("ADID"))
+            model_id_select = str(request.form.get("ModelID")).strip()
+            ad_id_select = str(request.form.get("ADID")).strip()
 
             # data validation
             check_query = f"SELECT * FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}'"
@@ -51,9 +51,9 @@ def Models_Directives():
         # Update MD
         # if user presses Update button
         if request.form.get("UpdateMD"):
-            md_id_select = str(request.form.get("MDID"))
-            model_id_select = str(request.form.get("ModelID"))
-            ad_id_select = str(request.form.get("ADID"))
+            md_id_select = str(request.form.get("MDID")).strip()
+            model_id_select = str(request.form.get("ModelID")).strip()
+            ad_id_select = str(request.form.get("ADID")).strip()
 
             # data validation
             check_query = f"SELECT * FROM Models_Directives WHERE model_id = '{model_id_select}' AND ad_id = '{ad_id_select}' AND md_id != {md_id_select}"
@@ -71,7 +71,7 @@ def Models_Directives():
         # Delete MD
         # if user presses Delete button
         if request.form.get("DeleteMD"):
-            md_id_select = str(request.form.get("MDID"))
+            md_id_select = str(request.form.get("MDID")).strip()
             # delete md query
             query = f"DELETE FROM Models_Directives WHERE md_id = '{md_id_select}'"
             cur = mysql.connection.cursor()

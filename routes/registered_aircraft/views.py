@@ -29,10 +29,10 @@ def Registered_Aircraft():
         # if user presses Add button for new model
         if request.form.get("NewRegisteredAircraft"):
             # get the inputs and selects
-            n_number_input = request.form["NNumber"]
-            owner_id_select = str(request.form.get("AircraftOwner"))
-            model_id_select = str(request.form.get("AircraftModel"))
-            status_input = request.form["CurrentStatus"]
+            n_number_input = request.form["NNumber"].strip()
+            owner_id_select = str(request.form.get("AircraftOwner")).strip()
+            model_id_select = str(request.form.get("AircraftModel")).strip()
+            status_input = request.form["CurrentStatus"].strip()
 
             # data validation
             if n_number_input == "" or status_input == "":
@@ -57,11 +57,11 @@ def Registered_Aircraft():
         # Update Aircraft
         # if user presses Update button
         if request.form.get("UpdateRegisteredAircraft"):
-            aircraft_id_select = str(request.form.get("AircraftID"))
-            n_number_input = request.form["NNumber"]
-            owner_id_select = str(request.form.get("AircraftOwner"))
-            model_id_select = str(request.form.get("AircraftModel"))
-            status_input = request.form["CurrentStatus"]
+            aircraft_id_select = str(request.form.get("AircraftID")).strip()
+            n_number_input = request.form["NNumber"].strip()
+            owner_id_select = str(request.form.get("AircraftOwner")).strip()
+            model_id_select = str(request.form.get("AircraftModel")).strip()
+            status_input = request.form["CurrentStatus"].strip()
 
             # data validation
             if n_number_input == "" or status_input == "":
@@ -86,7 +86,7 @@ def Registered_Aircraft():
         # Delete Aircraft
         # if user presses Delete button
         if request.form.get("DeleteRegisteredAircraft"):
-            aircraft_id_select = str(request.form.get("AircraftID"))
+            aircraft_id_select = str(request.form.get("AircraftID")).strip()
             # delete aircraft query
             query = f"DELETE FROM Registered_Aircraft WHERE aircraft_id = '{aircraft_id_select}'"
             cur = mysql.connection.cursor()

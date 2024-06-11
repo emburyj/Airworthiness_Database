@@ -20,9 +20,9 @@ def Airworthiness_Directives():
 
         if request.form.get("NewAD"):
             # get the inputs and selects
-            ad_number_input = request.form["DirectiveNumber"]
-            ad_description_input = request.form["DirectiveDescription"]
-            required_maintenance_input = request.form["DirectiveDate"]
+            ad_number_input = request.form["DirectiveNumber"].strip()
+            ad_description_input = request.form["DirectiveDescription"].strip()
+            required_maintenance_input = request.form["DirectiveDate"].strip()
 
             # data validation
             if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
@@ -43,10 +43,10 @@ def Airworthiness_Directives():
         # Update AD
         # if user presses Update button
         if request.form.get("UpdateAD"):
-            ad_id_select = str(request.form.get("ADID"))
-            ad_number_input = request.form["DirectiveNumber"]
-            ad_description_input = request.form["DirectiveDescription"]
-            required_maintenance_input = request.form["DirectiveDate"]
+            ad_id_select = str(request.form.get("ADID")).strip()
+            ad_number_input = request.form["DirectiveNumber"].strip()
+            ad_description_input = request.form["DirectiveDescription"].strip()
+            required_maintenance_input = request.form["DirectiveDate"].strip()
 
             # data validation
             if ad_number_input == "" or ad_description_input == "" or required_maintenance_input == "":
@@ -67,7 +67,7 @@ def Airworthiness_Directives():
         # Delete AD
         # if user presses Delete button
         if request.form.get("DeleteAD"):
-            ad_id_select = str(request.form.get("ADID"))
+            ad_id_select = str(request.form.get("ADID")).strip()
             # delete AD query
             query = f"DELETE FROM Airworthiness_Directives WHERE ad_id = '{ad_id_select}'"
             cur = mysql.connection.cursor()

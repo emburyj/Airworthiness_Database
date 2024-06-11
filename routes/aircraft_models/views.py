@@ -19,8 +19,8 @@ def Aircraft_Models():
         # if user presses Add button for new model
         if request.form.get("NewAircraftModel"):
             # get the inputs and selects
-            manufacturer_name_input = request.form["AircraftManufacturer"]
-            model_name_input = request.form["AircraftModel"]
+            manufacturer_name_input = request.form["AircraftManufacturer"].strip()
+            model_name_input = request.form["AircraftModel"].strip()
 
             # data validation
             if manufacturer_name_input == "" or model_name_input == "":
@@ -41,9 +41,9 @@ def Aircraft_Models():
         # Update Model
         # if user presses Update button
         if request.form.get("UpdateAircraftModel"):
-            model_id_select = str(request.form.get("ModelID"))
-            manufacturer_name_input = request.form["AircraftManufacturer"]
-            model_name_input = request.form["AircraftModel"]
+            model_id_select = str(request.form.get("ModelID")).strip()
+            manufacturer_name_input = request.form["AircraftManufacturer"].strip()
+            model_name_input = request.form["AircraftModel"].strip()
 
             # data validation
             if manufacturer_name_input == "" or model_name_input == "":
@@ -64,7 +64,7 @@ def Aircraft_Models():
         # Delete Model
         # if user presses Delete button
         if request.form.get("DeleteAircraftModel"):
-            model_id_select = str(request.form.get("ModelID"))
+            model_id_select = str(request.form.get("ModelID")).strip()
             # delete model query
             query = f"DELETE FROM Aircraft_Models WHERE model_id = '{model_id_select}'"
             cur = mysql.connection.cursor()
